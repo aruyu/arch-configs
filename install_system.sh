@@ -9,6 +9,7 @@
 #/
 
 
+
 function error_exit()
 {
   echo -ne "Error: $1\n"
@@ -26,7 +27,7 @@ function set_timezone()
 function init_disk()
 {
   fdisk -l
-  read -p "Enter the Disk: " -i "/dev/" -e DISK_PATH
+  read -p "Enter the Disk (at least 64GB): " -i "/dev/" -e DISK_PATH
 
   fdisk ${DISK_PATH} <<-EOF
 	g
@@ -71,6 +72,8 @@ function mount_disk()
 
 function config_arch()
 {
+  read -p "Enter a new user name: " USER_NAME
+
   arch-chroot /mnt <<-EOF
 	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 	hwclock --systohc
@@ -87,19 +90,27 @@ function config_arch()
 	echo 'blacklist pcspkr' >> /etc/modprobe.d/nobeep.conf
 	echo 'blacklist snd_pcsp' >> /etc/modprobe.d/nobeep.conf
 
-	pacman -S --noconfirm networkmanager
+	pacman -S --needed --noconfirm networkmanager
 	systemctl enable NetworkManager
 
-	pacman -S --noconfirm grub efibootmgr
+	pacman -S --needed --noconfirm grub efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
 	grub-mkconfig -o /boot/grub/grub.cfg
 
 	passwd <<-EOF
-		root
-		root
-	EOF
+	root
+	root
+EOF
+
+	useradd -m -G users,wheel,audio,video -s /bin/bash ${USER_NAME}
+	passwd ${USER_NAME} <<-EOF
+	${USER_NAME}
+	${USER_NAME}
+EOF
 EOF
 }
+
+
 
 
 #==
@@ -110,13 +121,16 @@ rmmod pcspkr
 rmmod snd_pcsp
 ping -c 3 archlinux.org
 
-set_timezone || error_exit "Timezone set failed."
+set_timezone || error_exit "Timezone setting failed."
 init_disk || error_exit "Disk format failed."
-mount_disk || error_exit "Disk mount failed."
+mount_disk || error_exit "Disk mounting failed."
 
 pacstrap -K /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
-config_arch || error_exit "Arch root configure failed."
+config_arch || error_exit "Arch configure failed."
+cat /mnt/etc/fstab
+echo "Default password is all the same as ID"
+echo "Please, change the password."
 
 umount -R /mnt
