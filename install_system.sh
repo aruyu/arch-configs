@@ -9,6 +9,12 @@
 #/
 
 
+function error_exit()
+{
+  echo -ne "Error: $1\n"
+  exit 1
+}
+
 function set_timezone()
 {
   timedatectl list-timezones
@@ -23,33 +29,37 @@ function init_disk()
   read -p "Enter the Disk: " -i "/dev/" -e DISK_PATH
 
   fdisk ${DISK_PATH} << EOF
-    o     # clear the memory partition table
+    g     # clear the memory partition table as gpt
     p     # primary partition
     n     # new partition
     1     # partition number 1
           # default, start at beginning of disk
     +512M # 512MB memory for 1
     y     # warning proceed
-    t     # set disk type
-          # default, select lastest partition (1)
-    1     # type 1, linux boot system partition
     n     # new partition
     2     # partition number 2
           # default, start immediately after preceding partition
     +10G  # 10GB memory for 2
     y     # warning proceed
-    t     # set disk type
-          # default, select lastest partition (2)
-    19    # type 19, linux swap partition
     n     # new partition
     3     # partition number 3
           # default, start immediately after preceding partition
           # default, extend partition to end of disk
     y     # warning proceed
+
+    t     # set disk type
+    1     # select partition (1)
+    1     # type 1, EFI system partition
+    t     # set disk type
+    2     # select partition (2)
+    19    # type 19, linux swap partition
     p     # primary partition
     w     # save and write the memory partition table
 EOF
+}
 
+function format_disk()
+{
   mkfs.ext4 ${DISK_PATH}3
   mkfs.fat -F 32 ${DISK_PATH}1
   mkswap ${DISK_PATH}2
@@ -59,26 +69,9 @@ EOF
   swapon ${DISK_PATH}2
 }
 
-function error_exit()
+function config_arch()
 {
-  echo -ne "Error: $1\n"
-  exit 1
-}
-
-
-#==
-#   Starting codes in blew
-#/
-
-ping -c 3 archlinux.org
-
-set_timezone || error_exit "Timezone set failed."
-init_disk || error_exit "Disk initialize failed."
-
-pacstrap -K /mnt base linux linux-firmware
-genfstab -U /mnt >> /mnt/etc/fstab
-
-arch-chroot /mnt << EOF
+  arch-chroot /mnt << EOF
   ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
   hwclock --systohc
 
@@ -100,5 +93,22 @@ arch-chroot /mnt << EOF
   grub-mkconfig -o /boot/grub/grub.cfg
   exit
 EOF
+}
+
+
+#==
+#   Starting codes in blew
+#/
+
+ping -c 3 archlinux.org
+
+set_timezone || error_exit "Timezone set failed."
+init_disk || error_exit "Disk initialize failed."
+format_disk || error_exit "Disk format failed."
+
+pacstrap -K /mnt base linux linux-firmware
+genfstab -U /mnt >> /mnt/etc/fstab
+
+config_arch || error_exit "Arch root configure failed."
 
 umount -R /mnt
