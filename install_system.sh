@@ -20,8 +20,9 @@ function set_timezone()
 function init_disk()
 {
   fdisk -l
+  read -p "Enter the Disk: " -i "/dev/" -e DISK_PATH
 
-  read -p "Enter the Disk: " -i "/dev/" -e DISK_PATH << EOF | fdisk ${DISK_PATH}
+  fdisk ${DISK_PATH} << EOF
     o     # clear the memory partition table
     p     # primary partition
     n     # new partition
