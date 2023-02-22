@@ -72,26 +72,32 @@ function mount_disk()
 function config_arch()
 {
   arch-chroot /mnt <<-EOF
-	ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 	hwclock --systohc
 
-	echo en_US.UTF-8 UTF-8 > /etc/locale.gen
+	echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen
 	locale-gen
-	echo LANG=en_US.UTF-8 > /etc/locale.conf
+	echo 'LANG=en_US.UTF-8' >> /etc/locale.conf
 
-	echo arch > /etc/hostname
-	echo 127.0.1.1  localhost > /etc/hosts
-	echo ::1        localhost > /etc/hosts
-	echo 127.0.1.1  arch > /etc/hosts
+	echo 'arch' >> /etc/hostname
+	echo '127.0.1.1  localhost' >> /etc/hosts
+	echo '::1        localhost' >> /etc/hosts
+	echo '127.0.1.1  arch' >> /etc/hosts
 
-	pacman -S networkmanager
+	echo 'blacklist pcspkr' >> /etc/modprobe.d/nobeep.conf
+	echo 'blacklist snd_pcsp' >> /etc/modprobe.d/nobeep.conf
+
+	pacman -S --noconfirm networkmanager
 	systemctl enable NetworkManager
-	passwd
 
-	pacman -S grub efibootmgr
-	grub-install --tartget=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
+	pacman -S --noconfirm grub efibootmgr
+	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
 	grub-mkconfig -o /boot/grub/grub.cfg
-	exit
+
+	passwd <<-EOF
+		root
+		root
+	EOF
 EOF
 }
 
@@ -100,6 +106,8 @@ EOF
 #   Starting codes in blew
 #/
 
+rmmod pcspkr
+rmmod snd_pcsp
 ping -c 3 archlinux.org
 
 set_timezone || error_exit "Timezone set failed."
