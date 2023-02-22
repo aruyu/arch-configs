@@ -47,7 +47,7 @@ function init_disk()
     y     # warning proceed
     p     # primary partition
     w     # save and write the memory partition table
-  EOF
+EOF
 
   mkfs.ext4 ${DISK_PATH}3
   mkfs.fat -F 32 ${DISK_PATH}1
