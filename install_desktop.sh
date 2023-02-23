@@ -138,28 +138,24 @@ sudo pacman -S --needed --noconfirm ${GPU_DRIVER} xorg xorg-server xorg-xrdb xor
 sudo pacman -S --needed --noconfirm sddm
 sudo systemctl enable sddm.service
 
-
 #-- [VIEW] WM
 sudo pacman -S --needed --noconfirm openbox lxappearance lxappearance-obconf
 sudo pacman -S --needed --noconfirm nitrogen plank tint2 picom dunst
 
-
 #-- [SYS] System
 sudo pacman -S --needed --noconfirm libdrm brightnessctl iwd bluez bluez-utils
-sudo systemctl enable bluetooth
-
+sudo systemctl enable bluetooth.service
+sudo curl -o /etc/systemd/system/rfkill-unblock.service https://raw.githubusercontent.com/astaos/arch-configs/master/rfkill-unblock.service
+sudo systemctl enable rfkill-unblock.service
 
 #-- [SYS] Audio
 sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa mpd
 
-
 #-- [SYS] fonts
 sudo pacman -S --needed --noconfirm ibus ibus-libpinyin ibus-hangul
 
-
 #-- [APPS] System apps
 sudo pacman -S --needed --noconfirm arandr pavucontrol thunar thunar-volman thunar-archive-plugin xfce4-power-manager networkmanager
-
 
 #-- [APPS] User apps
 sudo pacman -S --needed --noconfirm alacritty vscode viewnior mpv mpc ncmpcpp gimp inkscape

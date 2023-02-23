@@ -134,3 +134,4 @@ echo "Default password is all the same as ID"
 echo "Please, change the password."
 
 umount -R /mnt
+echo "All successfully done."
