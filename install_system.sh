@@ -47,7 +47,6 @@ function init_disk()
 
 
 	y
-
 	t
 	1
 	1
@@ -74,7 +73,7 @@ function config_arch()
 {
   read -p "Enter a new user name: " USER_NAME
 
-  arch-chroot /mnt <<-EOF
+  arch-chroot /mnt <<-REALEND
 	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 	hwclock --systohc
 
@@ -107,7 +106,7 @@ EOF
 	${USER_NAME}
 	${USER_NAME}
 EOF
-EOF
+REALEND
 }
 
 
@@ -119,7 +118,7 @@ EOF
 
 rmmod pcspkr
 rmmod snd_pcsp
-ping -c 3 archlinux.org
+ping -c 3 archlinux.org || error_exit "Internet connection failed."
 
 set_timezone || error_exit "Timezone setting failed."
 init_disk || error_exit "Disk format failed."
@@ -129,9 +128,10 @@ pacstrap -K /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
 config_arch || error_exit "Arch configure failed."
+fdisk -l
 cat /mnt/etc/fstab
-echo "Default password is all the same as ID"
-echo "Please, change the password."
+echo "Default passwords is all the same as ID"
+echo "Please change the passwords."
 
 umount -R /mnt
 echo "All successfully done."
