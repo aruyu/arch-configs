@@ -132,7 +132,7 @@ sudo pacman -S --needed --noconfirm psmisc base-devel
 #-- [VIEW] X server & DM
 lspci -v | grep -A1 -e VGA -e 3D
 sudo pacman -Ss xf86-video
-read -p "Enter the xf86-video drvier: " -i "xf86-video-" GPU_DRIVER
+read -p "Enter the xf86-video drvier: " -i "xf86-video-" -e GPU_DRIVER
 
 sudo pacman -S --needed --noconfirm ${GPU_DRIVER} xorg xorg-server xorg-xrdb xorg-xrandr
 sudo pacman -S --needed --noconfirm sddm
@@ -145,8 +145,10 @@ sudo pacman -S --needed --noconfirm nitrogen plank tint2 picom dunst
 #-- [SYS] System
 sudo pacman -S --needed --noconfirm libdrm brightnessctl iwd bluez bluez-utils
 sudo systemctl enable bluetooth.service
-sudo curl -o /etc/systemd/system/rfkill-unblock.service https://raw.githubusercontent.com/astaos/arch-configs/master/rfkill-unblock.service
-sudo systemctl enable rfkill-unblock.service
+
+sudo curl -o /etc/systemd/system/rfkill-unblock-all.service \
+https://raw.githubusercontent.com/astaos/arch-configs/master/rfkill-unblock-all.service
+sudo systemctl enable rfkill-unblock-all.service
 
 #-- [SYS] Audio
 sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa mpd
@@ -155,7 +157,8 @@ sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa mpd
 sudo pacman -S --needed --noconfirm ibus ibus-libpinyin ibus-hangul
 
 #-- [APPS] System apps
-sudo pacman -S --needed --noconfirm arandr pavucontrol thunar thunar-volman thunar-archive-plugin xfce4-power-manager networkmanager
+sudo pacman -S --needed --noconfirm arandr pavucontrol xfce4-power-manager
+sudo pacman -S --needed --noconfirm thunar thunar-volman thunar-archive-plugin
 
 #-- [APPS] User apps
 sudo pacman -S --needed --noconfirm alacritty vscode viewnior mpv mpc ncmpcpp gimp inkscape
