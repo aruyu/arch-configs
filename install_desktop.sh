@@ -19,6 +19,17 @@ T_CO_NC='\e[0m'
 
 CURRENT_PROGRESS=0
 
+function error_exit()
+{
+  echo -ne "Error: $1\n"
+  exit 1
+}
+
+function delay()
+{
+  sleep 0.2;
+}
+
 function script_print()
 {
   echo -ne "$T_CO_BLUE[SCRIPT]$T_CO_NC$1"
@@ -32,11 +43,6 @@ function script_print_notify()
 function script_print_error()
 {
   echo -ne "$T_CO_BLUE[SCRIPT]$T_CO_NC$T_CO_RED-Error- $1$T_CO_NC"
-}
-
-function delay()
-{
-  sleep 0.2;
 }
 
 function progress()
@@ -135,8 +141,8 @@ lspci -v | grep -A1 -e VGA -e 3D
 sudo pacman -Ss xf86-video
 read -p "Enter the xf86-video drvier: " -i "xf86-video-" -e GPU_DRIVER
 
-sudo pacman -S --needed --noconfirm ${GPU_DRIVER} xorg xorg-server xorg-xrdb xorg-xrandr
-sudo pacman -S --needed --noconfirm sddm
+sudo pacman -S --needed --noconfirm ${GPU_DRIVER} || error_exit "wrong driver selected."
+sudo pacman -S --needed --noconfirm xorg xorg-server xorg-xrdb xorg-xrandr sddm
 sudo systemctl enable sddm.service
 
 #-- [VIEW] WM
