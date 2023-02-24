@@ -77,7 +77,9 @@ function config_arch()
 	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 	hwclock --systohc
 
-	echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen
+	sed -i 's/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen
+	sed -i 's/#ja_JP.UTF-8/ja_JP.UTF-8/g' /etc/locale.gen
+	sed -i 's/#ko_KR.UTF-8/ko_KR.UTF-8/g' /etc/locale.gen
 	locale-gen
 	echo 'LANG=en_US.UTF-8' >> /etc/locale.conf
 
@@ -90,7 +92,7 @@ function config_arch()
 	echo 'blacklist snd_pcsp' >> /etc/modprobe.d/nobeep.conf
 
 	pacman -S --needed --noconfirm networkmanager
-	systemctl enable NetworkManager
+	systemctl enable NetworkManager.service
 
 	pacman -S --needed --noconfirm grub efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
@@ -106,6 +108,9 @@ EOF
 	${USER_NAME}
 	${USER_NAME}
 EOF
+
+	pacman -S --needed --noconfirm sudo
+	sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoer
 REALEND
 }
 
@@ -127,7 +132,7 @@ mount_disk || error_exit "Disk mounting failed."
 pacstrap -K /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
-config_arch || error_exit "Arch configure failed."
+config_arch || error_exit "Arch configuration failed."
 fdisk -l
 cat /mnt/etc/fstab
 echo "Default passwords is all the same as ID"

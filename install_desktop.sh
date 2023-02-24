@@ -125,8 +125,9 @@ fi
 
 
 #-- Install essentials
-sudo pacman -S --needed --noconfirm vi sudo git wget net-tools iw
+sudo pacman -S --needed --noconfirm vim git wget net-tools iw
 sudo pacman -S --needed --noconfirm psmisc base-devel
+sudo ln -s /usr/bin/vim /usr/bin/vi
 
 
 #-- [VIEW] X server & DM
