@@ -110,7 +110,7 @@ EOF
 EOF
 
 	pacman -S --needed --noconfirm sudo
-	sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoer
+	sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 REALEND
 }
 
