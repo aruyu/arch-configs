@@ -44,7 +44,12 @@ function set_timezone()
 {
   timedatectl list-timezones
   read -p "Enter the Timezone: " TIMEZONE
-  timedatectl set-timezone ${TIMEZONE}
+
+  if [ -z ${TIMEZONE} ]; then
+    error_exit "Timezone setting failed."
+  fi
+
+  timedatectl set-timezone ${TIMEZONE} || error_exit "Timezone setting failed."
   timedatectl status
 }
 
@@ -94,9 +99,15 @@ EOF
 
 function mount_disk()
 {
-  mount ${DISK_PATH}3 /mnt
-  mount --mkdir ${DISK_PATH}1 /mnt/boot
-  swapon ${DISK_PATH}2
+  if [ ${DISK_PATH} = "/dev/sda" ]; then
+    mount /dev/sda3 /mnt
+    mount --mkdir /dev/sda1 /mnt/boot
+    swapon /dev/sda2
+  else
+    mount ${DISK_PATH}p3 /mnt
+    mount --mkdir ${DISK_PATH}p1 /mnt/boot
+    swapon ${DISK_PATH}p2
+  fi
 }
 
 function config_arch()
@@ -159,7 +170,7 @@ fi
 rmmod pcspkr
 rmmod snd_pcsp
 
-set_timezone || error_exit "Timezone setting failed."
+set_timezone
 init_disk || error_exit "Disk format failed."
 mount_disk || error_exit "Disk mounting failed."
 
