@@ -132,8 +132,9 @@ function config_arch()
 	echo 'blacklist pcspkr' >> /etc/modprobe.d/nobeep.conf
 	echo 'blacklist snd_pcsp' >> /etc/modprobe.d/nobeep.conf
 
-	pacman -S --needed --noconfirm networkmanager
+	pacman -S --needed --noconfirm networkmanager dhcpcd
 	systemctl enable NetworkManager.service
+	systemctl enable dhcpcd.service
 
 	pacman -S --needed --noconfirm grub efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable

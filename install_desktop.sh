@@ -58,8 +58,9 @@ sudo curl -o $HOME/.bashrc \
 https://raw.githubusercontent.com/astaos/arch-configs/master/.bashrc
 
 sudo pacman -Syu
-sudo pacman -S --needed --noconfirm vim git wget net-tools iw
-sudo pacman -S --needed --noconfirm openssh psmisc base-devel
+sudo pacman -S --needed --noconfirm vim git unzip rsync wget
+sudo pacman -S --needed --noconfirm openssh net-tools iw inetutils
+sudo pacman -S --needed --noconfirm psmisc base-devel
 sudo ln -s /usr/bin/vim /usr/bin/vi
 
 sudo pacman -S --needed --noconfirm iwd bluez bluez-utils
@@ -117,6 +118,13 @@ cd $HOME/.aur/perl-linux-desktopfiles
 makepkg -si --noconfirm
 cd $HOME/.aur/obmenu-generator
 makepkg -si --noconfirm
+
+
+##======================
+#-- Fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
+unzip JetBrainsMono.zip -d $HOME/.local/share/fonts/
+rm JetBrainsMono.zip
 
 
 ##======================
