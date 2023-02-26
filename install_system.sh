@@ -152,7 +152,6 @@ fi
 
 rmmod pcspkr
 rmmod snd_pcsp
-ping -c 3 archlinux.org || error_exit "Internet connection failed."
 
 set_timezone || error_exit "Timezone setting failed."
 init_disk || error_exit "Disk format failed."
