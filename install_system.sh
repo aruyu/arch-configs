@@ -81,9 +81,15 @@ function init_disk()
 	w
 EOF
 
-  mkfs.ext4 ${DISK_PATH}3
-  mkfs.fat -F 32 ${DISK_PATH}1
-  mkswap ${DISK_PATH}2
+  if [ ${DISK_PATH} = "/dev/sda" ]; then
+    mkfs.ext4 /dev/sda3
+    mkfs.fat -F 32 /dev/sda1
+    mkswap /dev/sda2
+  else
+    mkfs.ext4 ${DISK_PATH}p3
+    mkfs.fat -F 32 ${DISK_PATH}p1
+    mkswap ${DISK_PATH}p2
+  fi
 }
 
 function mount_disk()
