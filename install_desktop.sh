@@ -122,6 +122,7 @@ makepkg -si --noconfirm
 
 ##======================
 #-- Fonts
+mkdir -p $HOME/.local/share/fonts/
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
 unzip JetBrainsMono.zip -d $HOME/.local/share/fonts/
 rm JetBrainsMono.zip
