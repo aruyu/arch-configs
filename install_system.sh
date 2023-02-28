@@ -44,11 +44,6 @@ function set_timezone()
 {
   timedatectl list-timezones
   read -p "Enter the Timezone: " TIMEZONE
-
-  if [ -z ${TIMEZONE} ]; then
-    error_exit "Timezone setting failed."
-  fi
-
   timedatectl set-timezone ${TIMEZONE} || error_exit "Timezone setting failed."
   timedatectl status
 }
@@ -132,9 +127,21 @@ function config_arch()
 	echo 'blacklist pcspkr' >> /etc/modprobe.d/nobeep.conf
 	echo 'blacklist snd_pcsp' >> /etc/modprobe.d/nobeep.conf
 
-	pacman -S --needed --noconfirm networkmanager dhcpcd
+	pacman -S --needed --noconfirm networkmanager
+	pacman -S --needed --noconfirm dhcpcd iwd
 	systemctl enable NetworkManager.service
-	systemctl enable dhcpcd.service
+
+	echo '[main]' >> /etc/NetworkManager/conf.d/dhcp.conf
+	echo 'dhcp=dhcpcd' >> /etc/NetworkManager/conf.d/dhcp.conf
+	echo '[device]' >> /etc/NetworkManager/conf.d/wifi-backend.conf
+	echo 'wifi.backend=iwd' >> /etc/NetworkManager/conf.d/wifi-backend.conf
+
+	pacman -S --needed --noconfirm bluez bluez-utils
+	systemctl enable bluetooth.service
+
+	curl -o /etc/systemd/system/rfkill-unblock-all.service \
+	https://raw.githubusercontent.com/astaos/arch-configs/master/rfkill-unblock-all.service
+	systemctl enable rfkill-unblock-all.service
 
 	pacman -S --needed --noconfirm grub efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
@@ -151,8 +158,9 @@ EOF
 	${USER_NAME}
 EOF
 
-	pacman -S --needed --noconfirm sudo
+	pacman -S --needed --noconfirm sudo vim
 	sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
+	ln -s /usr/bin/vim /usr/bin/vi
 REALEND
 }
 

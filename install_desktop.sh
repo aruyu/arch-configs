@@ -58,18 +58,9 @@ sudo curl -o $HOME/.bashrc \
 https://raw.githubusercontent.com/astaos/arch-configs/master/.bashrc
 
 sudo pacman -Syu
-sudo pacman -S --needed --noconfirm vim git unzip rsync wget
+sudo pacman -S --needed --noconfirm git unzip rsync wget
 sudo pacman -S --needed --noconfirm openssh net-tools iw inetutils
 sudo pacman -S --needed --noconfirm psmisc base-devel
-sudo ln -s /usr/bin/vim /usr/bin/vi
-
-sudo pacman -S --needed --noconfirm iwd bluez bluez-utils
-sudo systemctl enable iwd.service
-sudo systemctl enable bluetooth.service
-
-sudo curl -o /etc/systemd/system/rfkill-unblock-all.service \
-https://raw.githubusercontent.com/astaos/arch-configs/master/rfkill-unblock-all.service
-sudo systemctl enable rfkill-unblock-all.service
 
 
 ##======================
