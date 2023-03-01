@@ -58,9 +58,9 @@ sudo curl -o $HOME/.bashrc \
 https://raw.githubusercontent.com/astaos/arch-configs/master/.bashrc
 
 sudo pacman -Syu
-sudo pacman -S --needed --noconfirm git unzip rsync wget
-sudo pacman -S --needed --noconfirm openssh net-tools iw inetutils
-sudo pacman -S --needed --noconfirm psmisc base-devel
+sudo pacman -S --needed --noconfirm git unzip rsync wget inetutils
+sudo pacman -S --needed --noconfirm net-tools iw openssh samba
+sudo pacman -S --needed --noconfirm psmisc base-devel bc
 
 
 ##======================
@@ -87,6 +87,7 @@ sudo pacman -S --needed --noconfirm ibus ibus-libpinyin ibus-hangul brightnessct
 #-- [APPS] System apps
 sudo pacman -S --needed --noconfirm arandr pavucontrol xfce4-power-manager
 sudo pacman -S --needed --noconfirm thunar thunar-volman thunar-archive-plugin
+sudo pacman -S --needed --noconfirm tumbler ffmpegthumbnailer gvfs file-roller
 
 #-- [APPS] User apps
 sudo pacman -S --needed --noconfirm chromium alacritty vscode gimp inkscape
@@ -109,6 +110,11 @@ cd $HOME/.aur/perl-linux-desktopfiles
 makepkg -si --noconfirm
 cd $HOME/.aur/obmenu-generator
 makepkg -si --noconfirm
+
+# 404 error
+#git clone https://aur.archlinux.org/thunar-shares-plugin.git $HOME/.aur/thunar-shares-plugin
+#cd $HOME/.aur/thunar-shares-plugin
+#makepkg -si --noconfirm
 
 
 ##======================
