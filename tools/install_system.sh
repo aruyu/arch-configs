@@ -43,7 +43,7 @@ function error_exit()
 function set_timezone()
 {
   timedatectl list-timezones
-  read -p "Enter the Timezone: " TIMEZONE
+  read -p "Enter the Timezone: " -e TIMEZONE
   timedatectl set-timezone ${TIMEZONE} || error_exit "Timezone setting failed."
   timedatectl status
 }
@@ -60,17 +60,14 @@ function init_disk()
 	1
 
 	+512M
-	y
 	n
 	2
 
 	+10G
-	y
 	n
 	3
 
 
-	y
 	t
 	1
 	1
@@ -107,7 +104,7 @@ function mount_disk()
 
 function config_arch()
 {
-  read -p "Enter a new user name: " USER_NAME
+  read -p "Enter a new user name: " -e USER_NAME
 
   arch-chroot /mnt <<-REALEND
 	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
@@ -129,12 +126,13 @@ function config_arch()
 
 	pacman -S --needed --noconfirm networkmanager
 	pacman -S --needed --noconfirm dhcpcd iwd
-	systemctl enable NetworkManager.service
 
-	echo '[main]' >> /etc/NetworkManager/conf.d/dhcp.conf
-	echo 'dhcp=dhcpcd' >> /etc/NetworkManager/conf.d/dhcp.conf
+	echo '[main]' >> /etc/NetworkManager/conf.d/dhcp-client.conf
+	echo 'dhcp=dhcpcd' >> /etc/NetworkManager/conf.d/dhcp-client.conf
 	echo '[device]' >> /etc/NetworkManager/conf.d/wifi-backend.conf
 	echo 'wifi.backend=iwd' >> /etc/NetworkManager/conf.d/wifi-backend.conf
+
+	systemctl enable NetworkManager.service
 
 	pacman -S --needed --noconfirm bluez bluez-utils
 	systemctl enable bluetooth.service

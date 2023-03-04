@@ -75,17 +75,15 @@ sudo pacman -S --needed --noconfirm libdrm sddm
 sudo systemctl enable sddm.service
 
 #-- [VIEW] WM
-sudo pacman -S --needed --noconfirm openbox lxappearance lxappearance-obconf
-sudo pacman -S --needed --noconfirm nitrogen plank tint2 picom dunst
-
-#-- [SYS] Audio
-sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa mpd
+sudo pacman -S --needed --noconfirm openbox picom nitrogen plank tint2 dunst
+sudo pacman -S --needed --noconfirm lxappearance lxappearance-obconf lxinput lxrandr
 
 #-- [SYS] Others
-sudo pacman -S --needed --noconfirm ibus ibus-libpinyin ibus-hangul brightnessctl
+sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa mpd brightnessctl
 
 #-- [APPS] System apps
-sudo pacman -S --needed --noconfirm arandr pavucontrol xfce4-power-manager
+sudo pacman -S --needed --noconfirm xfce4-power-manager network-manager-applet
+sudo pacman -S --needed --noconfirm pavucontrol ibus ibus-libpinyin ibus-hangul
 sudo pacman -S --needed --noconfirm thunar thunar-volman thunar-archive-plugin
 sudo pacman -S --needed --noconfirm tumbler ffmpegthumbnailer gvfs file-roller
 
@@ -109,6 +107,14 @@ git clone https://aur.archlinux.org/obmenu-generator.git $HOME/.aur/obmenu-gener
 cd $HOME/.aur/perl-linux-desktopfiles
 makepkg -si --noconfirm
 cd $HOME/.aur/obmenu-generator
+makepkg -si --noconfirm
+
+git clone https://aur.archlinux.org/obkey.git $HOME/.aur/obkey
+cd $HOME/.aur/obkey
+makepkg -si --noconfirm
+
+git clone https://aur.archlinux.org/obapps.git $HOME/.aur/obapps
+cd $HOME/.aur/obapps
 makepkg -si --noconfirm
 
 # 404 error
