@@ -75,17 +75,15 @@ sudo pacman -S --needed --noconfirm libdrm sddm
 sudo systemctl enable sddm.service
 
 #-- [VIEW] WM
-sudo pacman -S --needed --noconfirm openbox lxappearance lxappearance-obconf
-sudo pacman -S --needed --noconfirm nitrogen plank tint2 picom dunst
-
-#-- [SYS] Audio
-sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa mpd
+sudo pacman -S --needed --noconfirm openbox obconf picom
+sudo pacman -S --needed --noconfirm nitrogen plank tint2 dunst
 
 #-- [SYS] Others
-sudo pacman -S --needed --noconfirm ibus ibus-libpinyin ibus-hangul brightnessctl
+sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa mpd brightnessctl
 
 #-- [APPS] System apps
-sudo pacman -S --needed --noconfirm arandr pavucontrol xfce4-power-manager
+sudo pacman -S --needed --noconfirm xfce4-settings xfce4-power-manager network-manager-applet
+sudo pacman -S --needed --noconfirm pavucontrol ibus ibus-libpinyin ibus-hangul
 sudo pacman -S --needed --noconfirm thunar thunar-volman thunar-archive-plugin
 sudo pacman -S --needed --noconfirm tumbler ffmpegthumbnailer gvfs file-roller
 
