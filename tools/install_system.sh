@@ -60,17 +60,14 @@ function init_disk()
 	1
 
 	+512M
-	y
 	n
 	2
 
 	+10G
-	y
 	n
 	3
 
 
-	y
 	t
 	1
 	1
@@ -127,14 +124,14 @@ function config_arch()
 	echo 'blacklist pcspkr' >> /etc/modprobe.d/nobeep.conf
 	echo 'blacklist snd_pcsp' >> /etc/modprobe.d/nobeep.conf
 
-	pacman -S --needed --noconfirm networkmanager
-	pacman -S --needed --noconfirm dhcpcd iwd
-	systemctl enable NetworkManager.service
+	pacman -S --needed --noconfirm networkmanager dhclient iwd
 
-	echo '[main]' >> /etc/NetworkManager/conf.d/dhcp.conf
-	echo 'dhcp=dhcpcd' >> /etc/NetworkManager/conf.d/dhcp.conf
+	echo '[main]' >> /etc/NetworkManager/conf.d/dhcp-client.conf
+	echo 'dhcp=dhclient' >> /etc/NetworkManager/conf.d/dhcp-client.conf
 	echo '[device]' >> /etc/NetworkManager/conf.d/wifi-backend.conf
 	echo 'wifi.backend=iwd' >> /etc/NetworkManager/conf.d/wifi-backend.conf
+
+	systemctl enable NetworkManager.service
 
 	pacman -S --needed --noconfirm bluez bluez-utils
 	systemctl enable bluetooth.service
