@@ -125,10 +125,10 @@ function config_arch()
 	echo 'blacklist snd_pcsp' >> /etc/modprobe.d/nobeep.conf
 
 	pacman -S --needed --noconfirm networkmanager
-	pacman -S --needed --noconfirm dhcpcd iwd
+	pacman -S --needed --noconfirm dhclient iwd
 
 	echo '[main]' >> /etc/NetworkManager/conf.d/dhcp-client.conf
-	echo 'dhcp=dhcpcd' >> /etc/NetworkManager/conf.d/dhcp-client.conf
+	echo 'dhcp=dhclient' >> /etc/NetworkManager/conf.d/dhcp-client.conf
 	echo '[device]' >> /etc/NetworkManager/conf.d/wifi-backend.conf
 	echo 'wifi.backend=iwd' >> /etc/NetworkManager/conf.d/wifi-backend.conf
 
