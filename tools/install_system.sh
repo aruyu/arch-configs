@@ -43,6 +43,7 @@ function error_exit()
 function set_timezone()
 {
   timedatectl list-timezones
+  echo
   read -p "Enter the Timezone: " -e TIMEZONE
   timedatectl set-timezone ${TIMEZONE} || error_exit "Timezone setting failed."
   timedatectl status
@@ -50,7 +51,9 @@ function set_timezone()
 
 function init_disk()
 {
+  echo
   fdisk -l
+  echo
   read -p "Enter the Disk (at least 64GB): " -i "/dev/" -e DISK_PATH
 
   fdisk ${DISK_PATH} <<-EOF
@@ -104,6 +107,7 @@ function mount_disk()
 
 function config_arch()
 {
+  echo
   read -p "Enter a new user name: " -e USER_NAME
 
   arch-chroot /mnt <<-REALEND

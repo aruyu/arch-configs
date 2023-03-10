@@ -66,8 +66,10 @@ sudo systemctl enable iptables.service
 
 ##======================
 #-- [VIEW] X server & DM
+echo
 lspci -v | grep -A1 -e VGA -e 3D
 sudo pacman -Ss xf86-video
+echo
 read -p "Enter the xf86-video drvier: " -i "xf86-video-" -e GPU_DRIVER
 
 sudo pacman -S --needed --noconfirm ${GPU_DRIVER} || error_exit "wrong driver selected."
