@@ -58,9 +58,10 @@ sudo curl -o $HOME/.bashrc \
 https://raw.githubusercontent.com/astaos/arch-configs/master/configs/.bashrc
 
 sudo pacman -Syu
-sudo pacman -S --needed --noconfirm git unzip rsync wget inetutils
-sudo pacman -S --needed --noconfirm net-tools iw openssh samba
-sudo pacman -S --needed --noconfirm psmisc base-devel bc
+sudo pacman -S --needed --noconfirm git wget rsync unzip
+sudo pacman -S --needed --noconfirm inetutils iptables net-tools
+sudo pacman -S --needed --noconfirm base-devel bc openssh samba
+sudo systemctl enable iptables.service
 
 
 ##======================
