@@ -131,10 +131,14 @@ function config_arch()
 	pacman -S --needed --noconfirm networkmanager
 	pacman -S --needed --noconfirm dhclient iwd
 
+	killall wpa_supplicant
+	pacman -R --noconfirm wpa_supplicant
+
 	echo '[main]' >> /etc/NetworkManager/conf.d/dhcp-client.conf
 	echo 'dhcp=dhclient' >> /etc/NetworkManager/conf.d/dhcp-client.conf
 	echo '[device]' >> /etc/NetworkManager/conf.d/wifi-backend.conf
 	echo 'wifi.backend=iwd' >> /etc/NetworkManager/conf.d/wifi-backend.conf
+	echo 'wifi.iwd.autoconnect=yes' >> /etc/NetworkManager/conf.d/wifi-backend.conf
 
 	systemctl enable NetworkManager.service
 
