@@ -82,10 +82,11 @@ sudo pacman -S --needed --noconfirm openbox picom nitrogen plank tint2 dunst
 sudo pacman -S --needed --noconfirm lxappearance lxappearance-obconf lxinput arandr
 
 #-- [SYS] Others
-sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa mpd brightnessctl
+sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pulseaudio-bluetooth
+sudo pacman -S --needed --noconfirm mpd brightnessctl
 
 #-- [APPS] System apps
-sudo pacman -S --needed --noconfirm xfce4-power-manager #network-manager-applet
+sudo pacman -S --needed --noconfirm xfce4-power-manager network-manager-applet blueman
 sudo pacman -S --needed --noconfirm pavucontrol ibus ibus-libpinyin ibus-hangul
 sudo pacman -S --needed --noconfirm thunar thunar-volman thunar-archive-plugin
 sudo pacman -S --needed --noconfirm tumbler ffmpegthumbnailer gvfs file-roller
