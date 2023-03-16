@@ -122,9 +122,9 @@ function config_arch()
 
 	echo 'arch' >> /etc/hostname
 	cat >> /etc/hosts <<-EOF
-	127.0.1.1	localhost
-	::1		localhost
-	127.0.1.1	arch
+	127.0.1.1  localhost
+	::1        localhost
+	127.0.1.1  arch
 EOF
 
 	cat >> /etc/modprobe.d/nobeep.conf <<-EOF
