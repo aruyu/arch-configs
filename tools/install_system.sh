@@ -121,12 +121,16 @@ function config_arch()
 	echo 'LANG=en_US.UTF-8' >> /etc/locale.conf
 
 	echo 'arch' >> /etc/hostname
-	echo '127.0.1.1  localhost' >> /etc/hosts
-	echo '::1        localhost' >> /etc/hosts
-	echo '127.0.1.1  arch' >> /etc/hosts
+	cat >> /etc/hosts <<-EOF
+	127.0.1.1	localhost
+	::1		localhost
+	127.0.1.1	arch
+EOF
 
-	echo 'blacklist pcspkr' >> /etc/modprobe.d/nobeep.conf
-	echo 'blacklist snd_pcsp' >> /etc/modprobe.d/nobeep.conf
+	cat >> /etc/modprobe.d/nobeep.conf <<-EOF
+	blacklist pcspkr
+	blacklist snd_pcsp
+EOF
 
 	pacman -S --needed --noconfirm networkmanager
 	pacman -S --needed --noconfirm dhclient iwd
@@ -135,11 +139,25 @@ function config_arch()
 	killall wpa_supplicant
 	systemctl mask wpa_supplicant.service
 
-	echo '[main]' >> /etc/NetworkManager/conf.d/dhcp-client.conf
-	echo 'dhcp=internal' >> /etc/NetworkManager/conf.d/dhcp-client.conf
-	echo '[device]' >> /etc/NetworkManager/conf.d/wifi-backend.conf
-	echo 'wifi.backend=iwd' >> /etc/NetworkManager/conf.d/wifi-backend.conf
-	echo 'wifi.iwd.autoconnect=yes' >> /etc/NetworkManager/conf.d/wifi-backend.conf
+	cat >> /etc/NetworkManager/conf.d/dhcp-client.conf <<-EOF
+	[main]
+	dhcp=dhclient
+EOF
+
+	cat >> /etc/NetworkManager/conf.d/wifi-backend.conf <<-EOF
+	[device]
+	wifi.backend=iwd
+	wifi.iwd.autoconnect=yes
+EOF
+
+	cat >> /etc/NetworkManager/conf.d/wifi-rand-mac.conf <<-EOF
+	[device-mac-randomization]
+	wifi.scan-rand-mac-address=yes
+
+	[connection-mac-randomization]
+	ethernet.cloned-mac-address=random
+	wifi.cloned-mac-address=stable
+EOF
 
 	systemctl enable NetworkManager.service
 
@@ -152,6 +170,8 @@ function config_arch()
 
 	pacman -S --needed --noconfirm grub efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
+	sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/g' /etc/default/grub
+	sed -i 's/GRUB_TIMEOUT_STYLE=memu/GRUB_TIMEOUT_STYLE=countdown/g' /etc/default/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
 
 	passwd <<-EOF

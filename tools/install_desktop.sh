@@ -83,7 +83,7 @@ sudo pacman -S --needed --noconfirm lxappearance lxappearance-obconf lxinput ara
 
 #-- [SYS] Others
 sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pulseaudio-bluetooth
-sudo pacman -S --needed --noconfirm mpd brightnessctl
+sudo pacman -S --needed --noconfirm mpd brightnessctl powertop
 
 #-- [APPS] System apps
 sudo pacman -S --needed --noconfirm xfce4-power-manager network-manager-applet blueman
@@ -93,7 +93,8 @@ sudo pacman -S --needed --noconfirm tumbler ffmpegthumbnailer gvfs file-roller
 
 #-- [APPS] User apps
 sudo pacman -S --needed --noconfirm chromium alacritty vscode gimp inkscape
-sudo pacman -S --needed --noconfirm viewnior mpv mpc ncmpcpp htop neofetch
+sudo pacman -S --needed --noconfirm viewnior mpv mpc ncmpcpp parcellite
+sudo pacman -S --needed --noconfirm htop neofetch gsimplecal
 
 
 ##======================
