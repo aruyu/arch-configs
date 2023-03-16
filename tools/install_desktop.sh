@@ -54,8 +54,9 @@ fi
 
 ##======================
 #-- Essentials
-sudo curl -o $HOME/.bashrc \
+sudo curl -o /root/.bashrc \
 https://raw.githubusercontent.com/astaos/arch-configs/master/configs/.bashrc
+sudo cp /root/.bashrc $HOME/.bashrc
 
 sudo pacman -Syu
 sudo pacman -S --needed --noconfirm git wget rsync unzip
