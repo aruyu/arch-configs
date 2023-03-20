@@ -166,7 +166,6 @@ EOF
 
 	curl -o /etc/systemd/system/rfkill-unblock-all.service \
 	https://raw.githubusercontent.com/astaos/arch-configs/master/configs/rfkill-unblock-all.service
-	systemctl enable rfkill-unblock-all.service
 
 	pacman -S --needed --noconfirm grub efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
