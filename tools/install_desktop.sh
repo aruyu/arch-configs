@@ -70,7 +70,7 @@ function install_dm()
 
 function install_wm()
 {
-  sudo pacman -S --needed --noconfirm openbox picom nitrogen cairo-dock tint2 dunst
+  sudo pacman -S --needed --noconfirm openbox picom nitrogen plank tint2 dunst
   sudo pacman -S --needed --noconfirm lxappearance lxappearance-obconf lxinput arandr
 }
 
@@ -90,9 +90,9 @@ function install_system_apps()
 
 function install_user_apps()
 {
-  sudo pacman -S --needed --noconfirm chromium alacritty vscode gimp inkscape
+  sudo pacman -S --needed --noconfirm chromium alacritty vscode gimp inkscape xournalpp
   sudo pacman -S --needed --noconfirm viewnior mpv mpc ncmpcpp parcellite
-  sudo pacman -S --needed --noconfirm htop neofetch gsimplecal
+  sudo pacman -S --needed --noconfirm htop radeontop neofetch gsimplecal
 }
 
 function install_aur()
