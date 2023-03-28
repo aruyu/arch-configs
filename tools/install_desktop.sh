@@ -91,7 +91,7 @@ function install_system_apps()
 function install_user_apps()
 {
   sudo pacman -S --needed --noconfirm chromium alacritty vscode gimp inkscape xournalpp
-  sudo pacman -S --needed --noconfirm viewnior mpv mpc ncmpcpp parcellite
+  sudo pacman -S --needed --noconfirm viewnior mpv mpc ncmpcpp parcellite scrot
   sudo pacman -S --needed --noconfirm htop radeontop neofetch gsimplecal
 }
 
