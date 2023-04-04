@@ -97,6 +97,10 @@ function install_user_apps()
 
 function install_aur()
 {
+  git clone https://aur.archlinux.org/debtap.git $HOME/.aur/debtap
+  cd $HOME/.aur/debtap
+  makepkg -si --noconfirm
+
   git clone https://aur.archlinux.org/ttf-nanum.git $HOME/.aur/ttf-nanum
   cd $HOME/.aur/ttf-nanum
   makepkg -si --noconfirm
