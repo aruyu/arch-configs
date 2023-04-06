@@ -171,6 +171,7 @@ EOF
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
 	sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/g' /etc/default/grub
 	sed -i 's/GRUB_TIMEOUT_STYLE=menu/GRUB_TIMEOUT_STYLE=countdown/g' /etc/default/grub
+	sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/s/"$/ btusb.enable_autosuspend=0"/' /etc/default/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
 
 	passwd <<-EOF

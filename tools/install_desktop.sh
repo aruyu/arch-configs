@@ -77,7 +77,10 @@ function install_wm()
 function install_others()
 {
   sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pulseaudio-bluetooth
-  sudo pacman -S --needed --noconfirm mpd brightnessctl powertop
+  sudo pacman -S --needed --noconfirm mpd brightnessctl tlp
+  sudo systemctl enable tlp.service
+  sudo systemctl mask systemd-rfkill.service
+  sudo systemctl mask systemd-rfkill.socket
 }
 
 function install_system_apps()
@@ -120,6 +123,10 @@ function install_aur()
   #git clone https://aur.archlinux.org/thunar-shares-plugin.git $HOME/.aur/thunar-shares-plugin
   #cd $HOME/.aur/thunar-shares-plugin
   #makepkg -si --noconfirm
+
+  git clone https://aur.archlinux.org/tlpui.git $HOME/.aur/tlpui
+  cd $HOME/.aur/tlpui
+  makepkg -si --noconfirm
 }
 
 function install_fonts()
