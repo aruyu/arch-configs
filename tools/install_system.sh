@@ -118,7 +118,10 @@ function config_arch()
 	sed -i 's/#ja_JP.UTF-8/ja_JP.UTF-8/g' /etc/locale.gen
 	sed -i 's/#ko_KR.UTF-8/ko_KR.UTF-8/g' /etc/locale.gen
 	locale-gen
-	echo 'LANG=en_US.UTF-8' >> /etc/locale.conf
+	cat >> /etc/locale.conf <<-EOF
+	LANG=en_US.UTF-8
+	LC_COLLATE=C
+EOF
 
 	echo 'arch' >> /etc/hostname
 	cat >> /etc/hosts <<-EOF
