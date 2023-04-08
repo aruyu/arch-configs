@@ -96,6 +96,9 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm chromium alacritty vscode gimp inkscape xournalpp
   sudo pacman -S --needed --noconfirm viewnior mpv mpc ncmpcpp parcellite scrot
   sudo pacman -S --needed --noconfirm htop radeontop neofetch gsimplecal
+
+  sudo pacman -S --needed --noconfirm docker
+  sudo systemctl enable docker.service
 }
 
 function install_aur()
@@ -135,8 +138,6 @@ function install_fonts()
   wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
   unzip JetBrainsMono.zip -d $HOME/.local/share/fonts/
   rm JetBrainsMono.zip
-
-  sudo pacman -S --needed --noconfirm wqy-microhei
 }
 
 
