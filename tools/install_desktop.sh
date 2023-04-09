@@ -63,8 +63,10 @@ function install_dm()
   read -p "Enter the xf86-video drvier: " -i "xf86-video-" -e GPU_DRIVER
 
   sudo pacman -S --needed --noconfirm ${GPU_DRIVER} || error_exit "Wrong driver is selected."
-  sudo pacman -S --needed --noconfirm xorg xorg-server xorg-xrdb xorg-xrandr
-  sudo pacman -S --needed --noconfirm libdrm sddm
+  sudo pacman -S --needed --noconfirm xorg xorg-server xorg-xrdb xorg-xrandr libdrm
+  sudo pacman -S --needed --noconfirm sddm qt5-graphicaleffects qt5-quickcontrols2 qt5-svg  # essentials
+  sudo pacman -S --needed --noconfirm gst-libav phonon-qt5-gstreamer gst-plugins-good       # gst gif supports
+  sudo pacman -S --needed --noconfirm qt5-quickcontrols qt5-multimedia
   sudo systemctl enable sddm.service
 }
 
