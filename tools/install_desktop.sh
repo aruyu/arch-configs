@@ -72,7 +72,7 @@ function install_dm()
 
 function install_wm()
 {
-  sudo pacman -S --needed --noconfirm openbox picom nitrogen plank tint2 dunst
+  sudo pacman -S --needed --noconfirm openbox nitrogen plank tint2 dunst
   sudo pacman -S --needed --noconfirm lxappearance lxappearance-obconf lxinput arandr
 }
 
@@ -109,14 +109,6 @@ function install_aur()
   cd $HOME/.aur/debtap
   makepkg -si --noconfirm
 
-  git clone https://aur.archlinux.org/ttf-nanum.git $HOME/.aur/ttf-nanum
-  cd $HOME/.aur/ttf-nanum
-  makepkg -si --noconfirm
-
-  git clone https://aur.archlinux.org/ttf-monapo.git $HOME/.aur/ttf-monapo
-  cd $HOME/.aur/ttf-monapo
-  makepkg -si --noconfirm
-
   git clone https://aur.archlinux.org/perl-linux-desktopfiles.git $HOME/.aur/perl-linux-desktopfiles
   git clone https://aur.archlinux.org/obmenu-generator.git $HOME/.aur/obmenu-generator
   cd $HOME/.aur/perl-linux-desktopfiles
@@ -129,8 +121,20 @@ function install_aur()
   #cd $HOME/.aur/thunar-shares-plugin
   #makepkg -si --noconfirm
 
+  git clone https://aur.archlinux.org/picom-pijulius-git.git $HOME/.aur/picom-pijulius-git
+  cd $HOME/.aur/picom-pijulius-git
+  makepkg -si --noconfirm
+
   git clone https://aur.archlinux.org/tlpui.git $HOME/.aur/tlpui
   cd $HOME/.aur/tlpui
+  makepkg -si --noconfirm
+
+  git clone https://aur.archlinux.org/ttf-monapo.git $HOME/.aur/ttf-monapo
+  cd $HOME/.aur/ttf-monapo
+  makepkg -si --noconfirm
+
+  git clone https://aur.archlinux.org/ttf-nanum.git $HOME/.aur/ttf-nanum
+  cd $HOME/.aur/ttf-nanum
   makepkg -si --noconfirm
 }
 
