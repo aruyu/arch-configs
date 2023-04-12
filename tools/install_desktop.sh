@@ -116,17 +116,16 @@ function install_aur()
   cd $HOME/.aur/obmenu-generator
   makepkg -si --noconfirm
 
-  # 404 error
-  #git clone https://aur.archlinux.org/thunar-shares-plugin.git $HOME/.aur/thunar-shares-plugin
-  #cd $HOME/.aur/thunar-shares-plugin
-  #makepkg -si --noconfirm
-
   git clone https://aur.archlinux.org/pa-applet-git.git $HOME/.aur/pa-applet-git
   cd $HOME/.aur/pa-applet-git
   makepkg -si --noconfirm
 
   git clone https://aur.archlinux.org/picom-pijulius-git.git $HOME/.aur/picom-pijulius-git
   cd $HOME/.aur/picom-pijulius-git
+  makepkg -si --noconfirm
+
+  git clone https://aur.archlinux.org/thunar-shares-plugin.git $HOME/.aur/thunar-shares-plugin
+  cd $HOME/.aur/thunar-shares-plugin
   makepkg -si --noconfirm
 
   git clone https://aur.archlinux.org/tlpui.git $HOME/.aur/tlpui
