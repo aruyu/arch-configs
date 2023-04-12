@@ -96,8 +96,8 @@ function install_system_apps()
 function install_user_apps()
 {
   sudo pacman -S --needed --noconfirm chromium alacritty vscode gimp inkscape xournalpp
-  sudo pacman -S --needed --noconfirm viewnior mpv mpc ncmpcpp parcellite scrot
-  sudo pacman -S --needed --noconfirm htop radeontop neofetch gsimplecal
+  sudo pacman -S --needed --noconfirm viewnior mpv mpc ncmpcpp parcellite xclip scrot
+  sudo pacman -S --needed --noconfirm htop radeontop neofetch gsimplecal qalculate-gtk
 
   sudo pacman -S --needed --noconfirm docker
   sudo systemctl enable docker.service
@@ -120,6 +120,10 @@ function install_aur()
   #git clone https://aur.archlinux.org/thunar-shares-plugin.git $HOME/.aur/thunar-shares-plugin
   #cd $HOME/.aur/thunar-shares-plugin
   #makepkg -si --noconfirm
+
+  git clone https://aur.archlinux.org/pa-applet-git.git $HOME/.aur/pa-applet-git
+  cd $HOME/.aur/pa-applet-git
+  makepkg -si --noconfirm
 
   git clone https://aur.archlinux.org/picom-pijulius-git.git $HOME/.aur/picom-pijulius-git
   cd $HOME/.aur/picom-pijulius-git
