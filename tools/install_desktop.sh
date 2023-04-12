@@ -72,7 +72,7 @@ function install_dm()
 
 function install_wm()
 {
-  sudo pacman -S --needed --noconfirm openbox nitrogen plank tint2 dunst
+  sudo pacman -S --needed --noconfirm openbox nitrogen tint2 jgmenu plank dunst
   sudo pacman -S --needed --noconfirm lxappearance lxappearance-obconf lxinput arandr
 }
 
@@ -196,4 +196,5 @@ install_fonts || error_exit "Fonts installation failed."
 ##======================
 #-- END
 cd $HOME
+mkdir Desktop Documents Downloads Pictures
 script_print_notify "All successfully done.\n"
