@@ -124,6 +124,10 @@ function install_aur()
   cd $HOME/.aur/picom-pijulius-git
   makepkg -si --noconfirm
 
+  git clone https://aur.archlinux.org/psuinfo.git $HOME/.aur/psuinfo
+  cd $HOME/.aur/psuinfo
+  makepkg -si --noconfirm
+
   git clone https://aur.archlinux.org/thunar-shares-plugin.git $HOME/.aur/thunar-shares-plugin
   cd $HOME/.aur/thunar-shares-plugin
   makepkg -si --noconfirm
