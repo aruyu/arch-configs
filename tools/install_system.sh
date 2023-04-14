@@ -1,10 +1,10 @@
 #!/bin/bash
 #==
 #   NOTE      - install_system.sh
-#   Author    - Asta
+#   Author    - Aru
 #
 #   Created   - 2023.02.21
-#   Github    - https://github.com/astaos
+#   Github    - https://github.com/aruyu
 #   Contact   - vine9151@gmail.com
 #/
 
@@ -168,7 +168,7 @@ EOF
 	systemctl enable bluetooth.service
 
 	curl -o /etc/systemd/system/rfkill-unblock-all.service \
-	https://raw.githubusercontent.com/astaos/arch-configs/master/configs/rfkill-unblock-all.service
+	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/rfkill-unblock-all.service
 
 	pacman -S --needed --noconfirm grub efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable

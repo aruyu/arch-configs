@@ -1,10 +1,10 @@
 #!/bin/bash
 #==
 #   NOTE      - install_desktop.sh
-#   Author    - Asta
+#   Author    - Aru
 #
 #   Created   - 2023.02.22
-#   Github    - https://github.com/astaos
+#   Github    - https://github.com/aruyu
 #   Contact   - vine9151@gmail.com
 #/
 
@@ -43,7 +43,7 @@ function error_exit()
 function install_essentials()
 {
   sudo curl -o /root/.bashrc \
-  https://raw.githubusercontent.com/astaos/arch-configs/master/configs/.bashrc
+  https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/.bashrc
   sudo cp /root/.bashrc $HOME/.bashrc
 
   sudo pacman -Syu
