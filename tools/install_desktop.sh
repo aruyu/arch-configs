@@ -51,6 +51,8 @@ function install_essentials()
   sudo pacman -S --needed --noconfirm inetutils iptables net-tools
   sudo pacman -S --needed --noconfirm base-devel bc openssh samba
   sudo systemctl enable iptables.service
+  
+  sudo pacman -S --needed --noconfirm python python-pip ruby jq
 }
 
 function install_dm()
