@@ -101,7 +101,7 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm viewnior mpv mpc ncmpcpp parcellite xclip scrot
   sudo pacman -S --needed --noconfirm htop radeontop neofetch gsimplecal qalculate-gtk
 
-  sudo pacman -S --needed --noconfirm docker
+  sudo pacman -S --needed --noconfirm docker minicom
   sudo systemctl enable docker.service
 }
 
@@ -125,6 +125,11 @@ function install_aur()
   git clone https://aur.archlinux.org/picom-pijulius-git.git $HOME/.aur/picom-pijulius-git
   cd $HOME/.aur/picom-pijulius-git
   makepkg -si --noconfirm
+
+  #git clone https://aur.archlinux.org/playonlinux.git $HOME/.aur/playonlinux
+  #cd $HOME/.aur/playonlinux
+  #makepkg -si --noconfirm
+  #sudo pacman -S lib32-mesa-libgl
 
   git clone https://aur.archlinux.org/psuinfo.git $HOME/.aur/psuinfo
   cd $HOME/.aur/psuinfo

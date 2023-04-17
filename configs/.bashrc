@@ -7,7 +7,12 @@
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-PS1='[\u@\h \W]\$ '
+
+if [[ $EUID -eq 0 ]]; then
+  PS1='[\u@\h \W]\$ '
+else
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+fi
 
 # some more aliases
 alias l='ls -CF'
