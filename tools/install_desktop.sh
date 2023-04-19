@@ -51,7 +51,7 @@ function install_essentials()
   sudo pacman -S --needed --noconfirm inetutils iptables net-tools
   sudo pacman -S --needed --noconfirm base-devel bc openssh samba
   sudo systemctl enable iptables.service
-  
+
   sudo pacman -S --needed --noconfirm python python-pip ruby jq
 }
 
@@ -207,5 +207,5 @@ install_fonts || error_exit "Fonts installation failed."
 ##======================
 #-- END
 cd $HOME
-mkdir Desktop Documents Downloads Pictures
+mkdir Desktop Documents Downloads Music Pictures Videos
 script_print_notify "All successfully done.\n"
