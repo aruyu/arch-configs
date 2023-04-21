@@ -81,10 +81,10 @@ function init_disk()
 	w
 EOF
 
-  if [ ${DISK_PATH} = "/dev/sda" ]; then
-    mkfs.ext4 /dev/sda3
-    mkfs.fat -F 32 /dev/sda1
-    mkswap /dev/sda2
+  if [[ ${DISK_PATH} = *sd* ]]; then
+    mkfs.ext4 ${DISK_PATH}3
+    mkfs.fat -F 32 ${DISK_PATH}1
+    mkswap ${DISK_PATH}2
   else
     mkfs.ext4 ${DISK_PATH}p3
     mkfs.fat -F 32 ${DISK_PATH}p1
@@ -94,10 +94,10 @@ EOF
 
 function mount_disk()
 {
-  if [ ${DISK_PATH} = "/dev/sda" ]; then
-    mount /dev/sda3 /mnt
-    mount --mkdir /dev/sda1 /mnt/boot
-    swapon /dev/sda2
+  if [[ ${DISK_PATH} = *sd* ]]; then
+    mount ${DISK_PATH}3 /mnt
+    mount --mkdir ${DISK_PATH}1 /mnt/boot
+    swapon ${DISK_PATH}2
   else
     mount ${DISK_PATH}p3 /mnt
     mount --mkdir ${DISK_PATH}p1 /mnt/boot
