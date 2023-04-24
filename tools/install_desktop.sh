@@ -111,6 +111,10 @@ function install_aur()
   cd $HOME/.aur/debtap
   makepkg -si --noconfirm
 
+  git clone https://aur.archlinux.org/font-symbola.git $HOME/.aur/font-symbola
+  cd $HOME/.aur/font-symbola
+  makepkg -si --noconfirm
+
   git clone https://aur.archlinux.org/perl-linux-desktopfiles.git $HOME/.aur/perl-linux-desktopfiles
   git clone https://aur.archlinux.org/obmenu-generator.git $HOME/.aur/obmenu-generator
   cd $HOME/.aur/perl-linux-desktopfiles
@@ -158,6 +162,8 @@ function install_fonts()
   wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
   unzip JetBrainsMono.zip -d $HOME/.local/share/fonts/
   rm JetBrainsMono.zip
+
+  sudo pacman -S --needed --noconfirm noto-fonts-emoji
 }
 
 
