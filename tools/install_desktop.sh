@@ -83,10 +83,10 @@ function install_wm()
 function install_others()
 {
   sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pulseaudio-bluetooth
-  sudo pacman -S --needed --noconfirm mpd brightnessctl acpi tlp
-  sudo systemctl enable tlp.service
-  sudo systemctl mask systemd-rfkill.service
-  sudo systemctl mask systemd-rfkill.socket
+  sudo pacman -S --needed --noconfirm mpd brightnessctl acpi
+  #sudo systemctl enable tlp.service
+  #sudo systemctl mask systemd-rfkill.service
+  #sudo systemctl mask systemd-rfkill.socket
 }
 
 function install_system_apps()
@@ -152,9 +152,10 @@ function install_aur()
   cd ${AUR_DIR}/thunar-shares-plugin
   makepkg -si --noconfirm
 
-  git clone https://aur.archlinux.org/tlpui.git ${AUR_DIR}/tlpui
-  cd ${AUR_DIR}/tlpui
-  makepkg -si --noconfirm
+  #sudo pacman -S tlp
+  #git clone https://aur.archlinux.org/tlpui.git ${AUR_DIR}/tlpui
+  #cd ${AUR_DIR}/tlpui
+  #makepkg -si --noconfirm
 
   git clone https://aur.archlinux.org/ttf-monapo.git ${AUR_DIR}/ttf-monapo
   cd ${AUR_DIR}/ttf-monapo
