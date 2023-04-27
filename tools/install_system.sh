@@ -182,7 +182,7 @@ EOF
 	root
 EOF
 
-	useradd -m -G users,wheel,audio,video -s /bin/bash ${USER_NAME}
+	useradd -m -G users,wheel -s /bin/bash ${USER_NAME}
 	passwd ${USER_NAME} <<-EOF
 	${USER_NAME}
 	${USER_NAME}

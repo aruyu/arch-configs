@@ -103,56 +103,59 @@ function install_user_apps()
 
   sudo pacman -S --needed --noconfirm docker minicom
   sudo systemctl enable docker.service
+  sudo usermod -aG docker $USER
 }
 
 function install_aur()
 {
-  git clone https://aur.archlinux.org/debtap.git $HOME/.aur/debtap
-  cd $HOME/.aur/debtap
+  AUR_DIR=$HOME/.cache/pacaur
+
+  git clone https://aur.archlinux.org/debtap.git ${AUR_DIR}/debtap
+  cd ${AUR_DIR}/debtap
   makepkg -si --noconfirm
 
-  git clone https://aur.archlinux.org/font-symbola.git $HOME/.aur/font-symbola
-  cd $HOME/.aur/font-symbola
+  git clone https://aur.archlinux.org/font-symbola.git ${AUR_DIR}/font-symbola
+  cd ${AUR_DIR}/font-symbola
   makepkg -si --noconfirm
 
-  git clone https://aur.archlinux.org/perl-linux-desktopfiles.git $HOME/.aur/perl-linux-desktopfiles
-  git clone https://aur.archlinux.org/obmenu-generator.git $HOME/.aur/obmenu-generator
-  cd $HOME/.aur/perl-linux-desktopfiles
+  git clone https://aur.archlinux.org/perl-linux-desktopfiles.git ${AUR_DIR}/perl-linux-desktopfiles
+  git clone https://aur.archlinux.org/obmenu-generator.git ${AUR_DIR}/obmenu-generator
+  cd ${AUR_DIR}/perl-linux-desktopfiles
   makepkg -si --noconfirm
-  cd $HOME/.aur/obmenu-generator
-  makepkg -si --noconfirm
-
-  git clone https://aur.archlinux.org/pa-applet-git.git $HOME/.aur/pa-applet-git
-  cd $HOME/.aur/pa-applet-git
+  cd ${AUR_DIR}/obmenu-generator
   makepkg -si --noconfirm
 
-  git clone https://aur.archlinux.org/picom-pijulius-git.git $HOME/.aur/picom-pijulius-git
-  cd $HOME/.aur/picom-pijulius-git
+  git clone https://aur.archlinux.org/pa-applet-git.git ${AUR_DIR}/pa-applet-git
+  cd ${AUR_DIR}/pa-applet-git
   makepkg -si --noconfirm
 
-  #git clone https://aur.archlinux.org/playonlinux.git $HOME/.aur/playonlinux
-  #cd $HOME/.aur/playonlinux
-  #makepkg -si --noconfirm
+  git clone https://aur.archlinux.org/picom-pijulius-git.git ${AUR_DIR}/picom-pijulius-git
+  cd ${AUR_DIR}/picom-pijulius-git
+  makepkg -si --noconfirm
+
   #sudo pacman -S lib32-mesa-libgl
+  #git clone https://aur.archlinux.org/playonlinux.git ${AUR_DIR}/playonlinux
+  #cd ${AUR_DIR}/playonlinux
+  #makepkg -si --noconfirm
 
-  git clone https://aur.archlinux.org/psuinfo.git $HOME/.aur/psuinfo
-  cd $HOME/.aur/psuinfo
+  git clone https://aur.archlinux.org/psuinfo.git ${AUR_DIR}/psuinfo
+  cd ${AUR_DIR}/psuinfo
   makepkg -si --noconfirm
 
-  git clone https://aur.archlinux.org/thunar-shares-plugin.git $HOME/.aur/thunar-shares-plugin
-  cd $HOME/.aur/thunar-shares-plugin
+  git clone https://aur.archlinux.org/thunar-shares-plugin.git ${AUR_DIR}/thunar-shares-plugin
+  cd ${AUR_DIR}/thunar-shares-plugin
   makepkg -si --noconfirm
 
-  git clone https://aur.archlinux.org/tlpui.git $HOME/.aur/tlpui
-  cd $HOME/.aur/tlpui
+  git clone https://aur.archlinux.org/tlpui.git ${AUR_DIR}/tlpui
+  cd ${AUR_DIR}/tlpui
   makepkg -si --noconfirm
 
-  git clone https://aur.archlinux.org/ttf-monapo.git $HOME/.aur/ttf-monapo
-  cd $HOME/.aur/ttf-monapo
+  git clone https://aur.archlinux.org/ttf-monapo.git ${AUR_DIR}/ttf-monapo
+  cd ${AUR_DIR}/ttf-monapo
   makepkg -si --noconfirm
 
-  git clone https://aur.archlinux.org/ttf-nanum.git $HOME/.aur/ttf-nanum
-  cd $HOME/.aur/ttf-nanum
+  git clone https://aur.archlinux.org/ttf-nanum.git ${AUR_DIR}/ttf-nanum
+  cd ${AUR_DIR}/ttf-nanum
   makepkg -si --noconfirm
 }
 
