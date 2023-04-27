@@ -53,6 +53,8 @@ function install_essentials()
   sudo systemctl enable iptables.service
 
   sudo pacman -S --needed --noconfirm python python-pip ruby jq
+  pip3 install --upgrade pip wheel setuptools
+  pip3 install psutil
 }
 
 function install_dm()
@@ -81,7 +83,7 @@ function install_wm()
 function install_others()
 {
   sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pulseaudio-bluetooth
-  sudo pacman -S --needed --noconfirm mpd brightnessctl tlp
+  sudo pacman -S --needed --noconfirm mpd brightnessctl acpi tlp
   sudo systemctl enable tlp.service
   sudo systemctl mask systemd-rfkill.service
   sudo systemctl mask systemd-rfkill.socket
@@ -140,6 +142,10 @@ function install_aur()
 
   git clone https://aur.archlinux.org/psuinfo.git ${AUR_DIR}/psuinfo
   cd ${AUR_DIR}/psuinfo
+  makepkg -si --noconfirm
+
+  git clone https://aur.archlinux.org/sysmontask.git ${AUR_DIR}/sysmontask
+  cd ${AUR_DIR}/sysmontask
   makepkg -si --noconfirm
 
   git clone https://aur.archlinux.org/thunar-shares-plugin.git ${AUR_DIR}/thunar-shares-plugin
