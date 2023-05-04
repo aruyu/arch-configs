@@ -1,9 +1,9 @@
 #!/bin/bash
 #==
-#   NOTE      - install_system.sh
+#   NOTE      - install_surface.sh
 #   Author    - Aru
 #
-#   Created   - 2023.02.21
+#   Created   - 2023.05.04
 #   Github    - https://github.com/aruyu
 #   Contact   - vine9151@gmail.com
 #/
@@ -127,6 +127,22 @@ function config_arch()
   read -p "Enter a new user name: " -e USER_NAME
 
   arch-chroot /mnt <<-REALEND
+	curl -s https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \
+	| pacman-key --add -
+	pacman-key --finger 56C464BAAC421453
+	pacman-key --lsign-key 56C464BAAC421453
+
+	cat >> /etc/pacman.conf <<-EOF
+
+	[linux-surface]
+	Server = https://pkg.surfacelinux.com/arch/
+EOF
+
+	pacman -Syu
+	pacman -S --needed --noconfirm linux-surface linux-surface-headers iptsd
+	pacman -S --needed --noconfirm linux-firmware-marvell
+	pacman -S --needed --noconfirm linux-surface-secureboot-mok
+
 	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 	hwclock --systohc
 
@@ -231,7 +247,7 @@ set_timezone
 init_disk || error_exit "Disk format failed."
 mount_disk || error_exit "Disk mounting failed."
 
-pacstrap -K /mnt base linux linux-firmware
+pacstrap -K /mnt base
 genfstab -U /mnt >> /mnt/etc/fstab
 
 config_arch || error_exit "Arch configuration failed."

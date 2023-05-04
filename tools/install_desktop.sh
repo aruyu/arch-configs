@@ -47,10 +47,9 @@ function install_essentials()
   sudo cp /root/.bashrc $HOME/.bashrc
 
   sudo pacman -Syu
-  sudo pacman -S --needed --noconfirm pacman-contrib
+  sudo pacman -S --needed --noconfirm pacman-contrib base-devel bc
   sudo pacman -S --needed --noconfirm git wget rsync unzip
-  sudo pacman -S --needed --noconfirm inetutils iptables net-tools
-  sudo pacman -S --needed --noconfirm base-devel bc openssh samba
+  sudo pacman -S --needed --noconfirm inetutils iptables net-tools openssh samba
   sudo systemctl enable iptables.service
 
   sudo pacman -S --needed --noconfirm python python-pip ruby jq
