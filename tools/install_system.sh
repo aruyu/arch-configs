@@ -117,6 +117,8 @@ function config_arch()
 	sed -i 's/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen
 	sed -i 's/#ja_JP.UTF-8/ja_JP.UTF-8/g' /etc/locale.gen
 	sed -i 's/#ko_KR.UTF-8/ko_KR.UTF-8/g' /etc/locale.gen
+	sed -i 's/#zh_CN.UTF-8/zh_CN.UTF-8/g' /etc/locale.gen
+	sed -i 's/#zh_TW.UTF-8/zh_TW.UTF-8/g' /etc/locale.gen
 	locale-gen
 	cat >> /etc/locale.conf <<-EOF
 	LANG=en_US.UTF-8

@@ -47,6 +47,7 @@ function install_essentials()
   sudo cp /root/.bashrc $HOME/.bashrc
 
   sudo pacman -Syu
+  sudo pacman -S --needed --noconfirm pacman-contrib
   sudo pacman -S --needed --noconfirm git wget rsync unzip
   sudo pacman -S --needed --noconfirm inetutils iptables net-tools
   sudo pacman -S --needed --noconfirm base-devel bc openssh samba
@@ -99,7 +100,8 @@ function install_system_apps()
 
 function install_user_apps()
 {
-  sudo pacman -S --needed --noconfirm chromium alacritty vscode gimp inkscape xournalpp
+  sudo pacman -S --needed --noconfirm firefox alacritty vscode
+  sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape xournalpp
   sudo pacman -S --needed --noconfirm viewnior mpv mpc ncmpcpp parcellite xclip scrot
   sudo pacman -S --needed --noconfirm htop radeontop neofetch gsimplecal qalculate-gtk
 
@@ -157,13 +159,13 @@ function install_aur()
   #cd ${AUR_DIR}/tlpui
   #makepkg -si --noconfirm
 
-  git clone https://aur.archlinux.org/ttf-monapo.git ${AUR_DIR}/ttf-monapo
-  cd ${AUR_DIR}/ttf-monapo
-  makepkg -si --noconfirm
+  #git clone https://aur.archlinux.org/ttf-monapo.git ${AUR_DIR}/ttf-monapo
+  #cd ${AUR_DIR}/ttf-monapo
+  #makepkg -si --noconfirm
 
-  git clone https://aur.archlinux.org/ttf-nanum.git ${AUR_DIR}/ttf-nanum
-  cd ${AUR_DIR}/ttf-nanum
-  makepkg -si --noconfirm
+  #git clone https://aur.archlinux.org/ttf-nanum.git ${AUR_DIR}/ttf-nanum
+  #cd ${AUR_DIR}/ttf-nanum
+  #makepkg -si --noconfirm
 }
 
 function install_fonts()
@@ -173,7 +175,8 @@ function install_fonts()
   unzip JetBrainsMono.zip -d $HOME/.local/share/fonts/
   rm JetBrainsMono.zip
 
-  sudo pacman -S --needed --noconfirm noto-fonts-emoji
+  sudo pacman -S --needed --noconfirm noto-fonts-cjk noto-fonts-emoji
+  sudo pacman -S --needed --noconfirm font-manager
 }
 
 
