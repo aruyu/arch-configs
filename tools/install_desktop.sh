@@ -99,10 +99,10 @@ function install_system_apps()
 
 function install_user_apps()
 {
-  sudo pacman -S --needed --noconfirm firefox alacritty vscode
+  sudo pacman -S --needed --noconfirm chromium firefox alacritty vscode
   sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape xournalpp
   sudo pacman -S --needed --noconfirm viewnior mpv mpc ncmpcpp parcellite xclip scrot
-  sudo pacman -S --needed --noconfirm htop radeontop neofetch gsimplecal qalculate-gtk
+  sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk
 
   sudo pacman -S --needed --noconfirm docker minicom
   sudo systemctl enable docker.service
