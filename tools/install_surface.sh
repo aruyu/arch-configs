@@ -140,7 +140,6 @@ EOF
 
 	pacman -Syu
 	pacman -S --needed --noconfirm linux-surface linux-surface-headers iptsd
-	pacman -S --needed --noconfirm linux-firmware-marvell
 	pacman -S --needed --noconfirm linux-surface-secureboot-mok
 
 	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
@@ -247,7 +246,7 @@ set_timezone
 init_disk || error_exit "Disk format failed."
 mount_disk || error_exit "Disk mounting failed."
 
-pacstrap -K /mnt base
+pacstrap -K /mnt base linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
 config_arch || error_exit "Arch configuration failed."
