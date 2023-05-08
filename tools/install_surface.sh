@@ -139,8 +139,7 @@ function config_arch()
 EOF
 
 	pacman -Syu
-	pacman -S --needed --noconfirm linux-surface linux-surface-headers iptsd
-	pacman -S --needed --noconfirm linux-surface-secureboot-mok
+	pacman -S --needed --noconfirm linux-surface linux-surface-headers iptsd #linux-surface-secureboot-mok
 
 	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 	hwclock --systohc
