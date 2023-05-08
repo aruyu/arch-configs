@@ -67,15 +67,14 @@ function install_dm()
     echo
     read -p "Enter the xf86-video drvier: " -i "xf86-video-" -e SELECTION
     case ${SELECTION} in
-      xf86-video-* )                 GPU_DRIVER=${SELECTION}; break;;
-      [Ss][Kk][Ii][Pp] )             GPU_DRIVER=${SELECTION}; break;;
-      * )                            echo "Wrong answer. (xf86-video-* or skip)";;
+      xf86-video-* )                script_print_notify "Selected video driver: ${SELECTION}.\n"; sleep 1;
+                                    sudo pacman -S --needed --noconfirm ${SELECTION} || error_exit "Wrong driver is selected.";
+                                    break;;
+      [Ss][Kk][Ii][Pp] )            break;;
+      * )                           echo "Wrong answer. (xf86-video-* or skip)";;
     esac
   done
-  script_print_notify "Selected video driver: ${GPU_DRIVER}B.\n"
-  sleep 1
 
-  sudo pacman -S --needed --noconfirm ${GPU_DRIVER} || error_exit "Wrong driver is selected."
   sudo pacman -S --needed --noconfirm xorg xorg-server xorg-xrdb xorg-xrandr libdrm
   sudo pacman -S --needed --noconfirm sddm qt5-graphicaleffects qt5-quickcontrols2 qt5-svg  # essentials
   sudo pacman -S --needed --noconfirm gst-libav phonon-qt5-gstreamer gst-plugins-good       # gst gif supports
