@@ -59,12 +59,21 @@ function install_essentials()
 
 function install_dm()
 {
-  echo
-  echo
-  lspci -v | grep -A1 -e VGA -e 3D
-  sudo pacman -Ss xf86-video
-  echo
-  read -p "Enter the xf86-video drvier: " -i "xf86-video-" -e GPU_DRIVER
+
+  while true; do
+    echo
+    lspci -v | grep -A1 -e VGA -e 3D
+    sudo pacman -Ss xf86-video
+    echo
+    read -p "Enter the xf86-video drvier: " -i "xf86-video-" -e SELECTION
+    case ${SELECTION} in
+      xf86-video-* )                 GPU_DRIVER=${SELECTION}; break;;
+      [Ss][Kk][Ii][Pp] )             GPU_DRIVER=${SELECTION}; break;;
+      * )                            echo "Wrong answer. (xf86-video-* or skip)";;
+    esac
+  done
+  script_print_notify "Selected video driver: ${GPU_DRIVER}B.\n"
+  sleep 1
 
   sudo pacman -S --needed --noconfirm ${GPU_DRIVER} || error_exit "Wrong driver is selected."
   sudo pacman -S --needed --noconfirm xorg xorg-server xorg-xrdb xorg-xrandr libdrm
