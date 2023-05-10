@@ -1,6 +1,6 @@
 #!/bin/bash
 #==
-#   NOTE      - install_desktop.sh
+#   NOTE      - install_xorg.sh
 #   Author    - Aru
 #
 #   Created   - 2023.02.22
@@ -59,7 +59,6 @@ function install_essentials()
 
 function install_dm()
 {
-
   while true; do
     echo
     lspci -v | grep -A1 -e VGA -e 3D
@@ -67,11 +66,11 @@ function install_dm()
     echo
     read -p "Enter the xf86-video drvier: " -i "xf86-video-" -e SELECTION
     case ${SELECTION} in
-      xf86-video-* )                script_print_notify "Selected video driver: ${SELECTION}.\n"; sleep 1;
-                                    sudo pacman -S --needed --noconfirm ${SELECTION} || error_exit "Wrong driver is selected.";
-                                    break;;
-      [Ss][Kk][Ii][Pp] )            break;;
-      * )                           echo "Wrong answer. (xf86-video-* or skip)";;
+      xf86-video-* )        script_print_notify "Selected video driver: ${SELECTION}.\n"; sleep 1;
+                            sudo pacman -S --needed --noconfirm ${SELECTION} || error_exit "Wrong driver is selected.";
+                            break;;
+      [Ss][Kk][Ii][Pp] )    break;;
+      * )                   echo "Wrong answer. (xf86-video-* or skip)";;
     esac
   done
 
@@ -108,8 +107,8 @@ function install_system_apps()
 function install_user_apps()
 {
   sudo pacman -S --needed --noconfirm chromium firefox alacritty vscode
-  sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape xournalpp
-  sudo pacman -S --needed --noconfirm viewnior mpv mpc ncmpcpp parcellite xclip scrot
+  sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape xournalpp viewnior
+  sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp parcellite xclip scrot
   sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk
 
   sudo pacman -S --needed --noconfirm docker minicom
@@ -184,6 +183,7 @@ function install_fonts()
 
   sudo pacman -S --needed --noconfirm noto-fonts-cjk noto-fonts-emoji
   sudo pacman -S --needed --noconfirm font-manager
+  sudo pacman -S --needed papirus-icon-theme
 }
 
 
@@ -205,7 +205,7 @@ install_essentials || error_exit "Essentials installation failed."
 
 ##======================
 #-- [VIEW] X server & DM
-install_dm || error_exit "X server & DM installation failed."
+install_dm || error_exit "Xorg & DM installation failed."
 
 #-- [VIEW] WM
 install_wm || error_exit "WM installation failed."
