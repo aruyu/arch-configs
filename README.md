@@ -14,7 +14,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/aruyu/arch-configs/master/
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/aruyu/arch-configs/master/tools/install_surface.sh)"
 ```
 
-## Installation scripts for Desktop Manager and Window Manager 
+## Installation scripts for Desktop Manager and Window Manager
 
 <details>
 <summary><b>For Xorg, X11 (SDDM + Openbox WM)</b></summary>
