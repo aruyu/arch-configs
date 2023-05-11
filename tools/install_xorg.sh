@@ -183,7 +183,7 @@ function install_fonts()
 
   sudo pacman -S --needed --noconfirm noto-fonts-cjk noto-fonts-emoji
   sudo pacman -S --needed --noconfirm font-manager
-  sudo pacman -S --needed papirus-icon-theme
+  sudo pacman -S --needed --noconfirm papirus-icon-theme
 }
 
 

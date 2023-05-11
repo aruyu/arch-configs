@@ -104,7 +104,7 @@ function install_aur()
 
   trizen -S --needed --noconfirm debtap
 
-  trizen -S --needed --noconfirm font-symbola
+  trizen -S --needed --noconfirm ttf-symbola
   trizen -S --needed --noconfirm nwg-launchers
   trizen -S --needed --noconfirm nwg-look
 
@@ -114,7 +114,7 @@ function install_aur()
   trizen -S --needed --noconfirm waybar-hyprland-git
   trizen -S --needed --noconfirm wayout-git
   trizen -S --needed --noconfirm wdisplays
-  trizen -S --needed --noconfirm xdg-desktop-portal-hyprland-git
+  #trizen -S --needed --noconfirm xdg-desktop-portal-hyprland-git
 
   #sudo pacman -S lib32-mesa-libgl
   #git clone https://aur.archlinux.org/playonlinux.git ${AUR_DIR}/playonlinux
@@ -131,7 +131,7 @@ function install_fonts()
 
   sudo pacman -S --needed --noconfirm noto-fonts-cjk noto-fonts-emoji
   sudo pacman -S --needed --noconfirm font-manager
-  sudo pacman -S --needed papirus-icon-theme
+  sudo pacman -S --needed --noconfirm papirus-icon-theme
 }
 
 
