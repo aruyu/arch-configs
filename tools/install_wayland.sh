@@ -54,13 +54,12 @@ function install_essentials()
 
   sudo pacman -S --needed --noconfirm python python-pip ruby jq
   pip3 install --upgrade pip wheel setuptools
-  pip3 install psutil
 }
 
 function install_dm()
 {
-  sudo pacman -S --needed --noconfirm wayland libdrm
-  sudo pacman -S --needed --noconfirm gdm
+  sudo pacman -S --needed --noconfirm wayland wayland-utils
+  sudo pacman -S --needed --noconfirm gdm libdrm
   sudo systemctl enable gdm.service
 }
 
@@ -77,9 +76,9 @@ function install_others()
 
 function install_system_apps()
 {
-  sudo pacman -S --needed --noconfirm network-manager-applet blueman
-  sudo pacman -S --needed --noconfirm pavucontrol ibus ibus-libpinyin ibus-hangul
-  sudo pacman -S --needed --noconfirm nautilus gvfs
+  sudo pacman -S --needed --noconfirm network-manager-applet blueman pavucontrol
+  sudo pacman -S --needed --noconfirm ibus ibus-libpinyin ibus-hangul nautilus
+  sudo pacman -S --needed --noconfirm gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
 }
 
 function install_user_apps()
@@ -111,18 +110,14 @@ function install_aur()
   trizen -S --needed --noconfirm oreo-cursors-git
   sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme oreo_spark_red_cursors
 
-  trizen -S --needed --noconfirm psuinfo
-  trizen -S --needed --noconfirm sysmontask
   trizen -S --needed --noconfirm waybar-hyprland-git
+  trizen -S --needed --noconfirm wayout-git
   trizen -S --needed --noconfirm wdisplays
+  trizen -S --needed --noconfirm xdg-desktop-portal-hyprland-gits
 
   #sudo pacman -S lib32-mesa-libgl
   #git clone https://aur.archlinux.org/playonlinux.git ${AUR_DIR}/playonlinux
   #cd ${AUR_DIR}/playonlinux
-  #makepkg -si --noconfirm
-
-  #git clone https://aur.archlinux.org/wlr-randr.git ${AUR_DIR}/wlr-randr
-  #cd ${AUR_DIR}/wlr-randr
   #makepkg -si --noconfirm
 }
 

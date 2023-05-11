@@ -204,9 +204,10 @@ EOF
 
 	pacman -S --needed --noconfirm grub efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
-	sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/g' /etc/default/grub
-	sed -i 's/GRUB_TIMEOUT_STYLE=menu/GRUB_TIMEOUT_STYLE=countdown/g' /etc/default/grub
-	sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/s/"$/ usbcore.autosuspend=-1 btusb.enable_autosuspend=0"/' /etc/default/grub
+	sed -i '/^GRUB_TIMEOUT=/s/5/0/g' /etc/default/grub
+	sed -i '/^GRUB_TIMEOUT_STYLE=/s/menu/countdown/g' /etc/default/grub
+	sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/s/"$/ usbcore.autosuspend=-1 btusb.enable_autosuspend=0"/' /etc/default/grub
+	sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=suspend/' /etc/systemd/logind.conf
 	grub-mkconfig -o /boot/grub/grub.cfg
 
 	passwd <<-EOF
