@@ -52,8 +52,9 @@ function install_essentials()
   sudo pacman -S --needed --noconfirm inetutils iptables net-tools openssh samba
   sudo systemctl enable iptables.service
 
-  sudo pacman -S --needed --noconfirm python python-pip ruby jq
+  sudo pacman -S --needed --noconfirm python python-pip ruby jq rustup
   pip3 install --upgrade pip wheel setuptools
+  rustup default stable
 }
 
 function install_dm()
@@ -113,7 +114,7 @@ function install_aur()
   trizen -S --needed --noconfirm waybar-hyprland-git
   trizen -S --needed --noconfirm wayout-git
   trizen -S --needed --noconfirm wdisplays
-  trizen -S --needed --noconfirm xdg-desktop-portal-hyprland-gits
+  trizen -S --needed --noconfirm xdg-desktop-portal-hyprland-git
 
   #sudo pacman -S lib32-mesa-libgl
   #git clone https://aur.archlinux.org/playonlinux.git ${AUR_DIR}/playonlinux
