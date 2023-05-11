@@ -66,28 +66,27 @@ function install_dm()
 
 function install_wm()
 {
-  sudo pacman -S --needed --noconfirm hyprland swaybg waybar swaylock dunst
+  sudo pacman -S --needed --noconfirm hyprland swaybg swaylock dunst
 }
 
 function install_others()
 {
   sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pulseaudio-bluetooth
-  sudo pacman -S --needed --noconfirm mpd gammastep
+  sudo pacman -S --needed --noconfirm mpd light
 }
 
 function install_system_apps()
 {
   sudo pacman -S --needed --noconfirm network-manager-applet blueman
   sudo pacman -S --needed --noconfirm pavucontrol ibus ibus-libpinyin ibus-hangul
-  sudo pacman -S --needed --noconfirm thunar thunar-volman thunar-archive-plugin
-  sudo pacman -S --needed --noconfirm tumbler ffmpegthumbnailer gvfs file-roller
+  sudo pacman -S --needed --noconfirm nautilus gvfs
 }
 
 function install_user_apps()
 {
   sudo pacman -S --needed --noconfirm chromium firefox alacritty vscode
-  sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape xournalpp viewnior
-  sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp parcellite grim slurp
+  sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
+  sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp
   sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk
 
   sudo pacman -S --needed --noconfirm docker minicom
@@ -97,56 +96,34 @@ function install_user_apps()
 
 function install_aur()
 {
-  AUR_DIR=$HOME/.cache/pacaur
+  AUR_DIR=$HOME/.cache/trizen/sources
 
-  git clone https://aur.archlinux.org/debtap.git ${AUR_DIR}/debtap
-  cd ${AUR_DIR}/debtap
+  git clone https://aur.archlinux.org/trizen.git ${AUR_DIR}/trizen
+  cd ${AUR_DIR}/trizen
   makepkg -si --noconfirm
 
-  git clone https://aur.archlinux.org/font-symbola.git ${AUR_DIR}/font-symbola
-  cd ${AUR_DIR}/font-symbola
-  makepkg -si --noconfirm
+  trizen -S --needed --noconfirm debtap
 
-  git clone https://aur.archlinux.org/nwg-dock-hyprland.git ${AUR_DIR}/nwg-dock-hyprland
-  cd ${AUR_DIR}/nwg-dock-hyprland
-  makepkg -si --noconfirm
+  trizen -S --needed --noconfirm font-symbola
+  trizen -S --needed --noconfirm nwg-launchers
+  trizen -S --needed --noconfirm nwg-look
 
-  git clone https://aur.archlinux.org/nwg-launchers.git ${AUR_DIR}/nwg-launchers
-  cd ${AUR_DIR}/nwg-launchers
-  makepkg -si --noconfirm
+  trizen -S --needed --noconfirm oreo-cursors-git
+  sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme oreo_spark_red_cursors
 
-  git clone https://aur.archlinux.org/nwg-look.git ${AUR_DIR}/nwg-look
-  cd ${AUR_DIR}/nwg-look
-  makepkg -si --noconfirm
-
-  git clone https://aur.archlinux.org/pa-applet-git.git ${AUR_DIR}/pa-applet-git
-  cd ${AUR_DIR}/pa-applet-git
-  makepkg -si --noconfirm
+  trizen -S --needed --noconfirm psuinfo
+  trizen -S --needed --noconfirm sysmontask
+  trizen -S --needed --noconfirm waybar-hyprland-git
+  trizen -S --needed --noconfirm wdisplays
 
   #sudo pacman -S lib32-mesa-libgl
   #git clone https://aur.archlinux.org/playonlinux.git ${AUR_DIR}/playonlinux
   #cd ${AUR_DIR}/playonlinux
   #makepkg -si --noconfirm
 
-  git clone https://aur.archlinux.org/psuinfo.git ${AUR_DIR}/psuinfo
-  cd ${AUR_DIR}/psuinfo
-  makepkg -si --noconfirm
-
-  git clone https://aur.archlinux.org/sysmontask.git ${AUR_DIR}/sysmontask
-  cd ${AUR_DIR}/sysmontask
-  makepkg -si --noconfirm
-
-  git clone https://aur.archlinux.org/thunar-shares-plugin.git ${AUR_DIR}/thunar-shares-plugin
-  cd ${AUR_DIR}/thunar-shares-plugin
-  makepkg -si --noconfirm
-
-  git clone https://aur.archlinux.org/wdisplays.git ${AUR_DIR}/wdisplays
-  cd ${AUR_DIR}/wdisplays
-  makepkg -si --noconfirm
-
-  git clone https://aur.archlinux.org/wlr-randr.git ${AUR_DIR}/wlr-randr
-  cd ${AUR_DIR}/wlr-randr
-  makepkg -si --noconfirm
+  #git clone https://aur.archlinux.org/wlr-randr.git ${AUR_DIR}/wlr-randr
+  #cd ${AUR_DIR}/wlr-randr
+  #makepkg -si --noconfirm
 }
 
 function install_fonts()
