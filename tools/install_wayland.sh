@@ -62,6 +62,12 @@ function install_dm()
   sudo pacman -S --needed --noconfirm wayland wayland-utils
   sudo pacman -S --needed --noconfirm gdm libdrm
   sudo systemctl enable gdm.service
+
+  ## bugfix 'at-spi2-core' pkg for gdm's slow startup.
+  #  Disable AT-SPI Bridge.
+  sudo su <<-EOF
+	echo 'NO_AT_BRIDGE=1' >> /etc/environment
+EOF
 }
 
 function install_wm()
@@ -114,7 +120,7 @@ function install_aur()
   trizen -S --needed --noconfirm waybar-hyprland-git
   trizen -S --needed --noconfirm wayout-git
   trizen -S --needed --noconfirm wdisplays
-  #trizen -S --needed --noconfirm xdg-desktop-portal-hyprland-git
+  trizen -S --needed --noconfirm xdg-desktop-portal-hyprland-git
 
   #sudo pacman -S lib32-mesa-libgl
   #git clone https://aur.archlinux.org/playonlinux.git ${AUR_DIR}/playonlinux
