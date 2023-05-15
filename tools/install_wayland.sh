@@ -78,7 +78,7 @@ function install_wm()
 function install_others()
 {
   sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pulseaudio-bluetooth
-  sudo pacman -S --needed --noconfirm mpd light
+  sudo pacman -S --needed --noconfirm mpd brightnessctl
 }
 
 function install_system_apps()
@@ -90,7 +90,7 @@ function install_system_apps()
 
 function install_user_apps()
 {
-  sudo pacman -S --needed --noconfirm chromium firefox alacritty vscode
+  sudo pacman -S --needed --noconfirm chromium firefox foot vscode
   sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp
   sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk
@@ -114,13 +114,13 @@ function install_aur()
   trizen -S --needed --noconfirm nwg-launchers
   trizen -S --needed --noconfirm nwg-look
 
-  trizen -S --needed --noconfirm oreo-cursors-git
-  sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme oreo_spark_red_cursors
+  trizen -S --needed --noconfirm catppuccin-cursors-frappe
+  sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Frappe-Dark-Cursors
 
   trizen -S --needed --noconfirm waybar-hyprland-git
   trizen -S --needed --noconfirm wayout-git
   trizen -S --needed --noconfirm wdisplays
-  trizen -S --needed --noconfirm xdg-desktop-portal-hyprland-git
+  #trizen -S --needed --noconfirm xdg-desktop-portal-hyprland-git
 
   #sudo pacman -S lib32-mesa-libgl
   #git clone https://aur.archlinux.org/playonlinux.git ${AUR_DIR}/playonlinux
