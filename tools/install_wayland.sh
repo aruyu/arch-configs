@@ -72,7 +72,8 @@ EOF
 
 function install_wm()
 {
-  sudo pacman -S --needed --noconfirm hyprland swaybg swaylock dunst
+  sudo pacman -S --needed --noconfirm hyprland swaybg swaylock swayidle
+  sudo pacman -S --needed --noconfirm dunst wofi
 }
 
 function install_others()
