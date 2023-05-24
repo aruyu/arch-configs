@@ -85,7 +85,7 @@ function install_others()
 function install_system_apps()
 {
   sudo pacman -S --needed --noconfirm network-manager-applet blueman pavucontrol
-  sudo pacman -S --needed --noconfirm ibus ibus-libpinyin ibus-hangul nautilus
+  sudo pacman -S --needed --noconfirm ibus ibus-libpinyin ibus-hangul nautilus nautilus-share file-roller
   sudo pacman -S --needed --noconfirm gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
 }
 
@@ -96,7 +96,7 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp
   sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk
 
-  sudo pacman -S --needed --noconfirm docker minicom
+  sudo pacman -S --needed --noconfirm docker minicom gtkterm
   sudo systemctl enable docker.service
   sudo usermod -aG docker $USER
 }
