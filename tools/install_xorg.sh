@@ -48,7 +48,7 @@ function install_essentials()
 
   sudo pacman -Syu
   sudo pacman -S --needed --noconfirm pacman-contrib base-devel bc
-  sudo pacman -S --needed --noconfirm git wget rsync unzip
+  sudo pacman -S --needed --noconfirm git wget rsync unzip gdb
   sudo pacman -S --needed --noconfirm inetutils iptables net-tools openssh samba
   sudo systemctl enable iptables.service
 
@@ -111,9 +111,9 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp parcellite xclip scrot
   sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk
 
-  sudo pacman -S --needed --noconfirm docker minicom
+  sudo pacman -S --needed --noconfirm docker minicom gtkterm
   sudo systemctl enable docker.service
-  sudo usermod -aG docker $USER
+  sudo usermod -aG docker,tty,uucp $USER
 }
 
 function install_aur()
