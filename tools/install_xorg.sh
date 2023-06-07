@@ -111,7 +111,7 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp parcellite xclip scrot
   sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk
 
-  sudo pacman -S --needed --noconfirm docker minicom gtkterm
+  sudo pacman -S --needed --noconfirm docker minicom gtkterm remmina
   sudo systemctl enable docker.service
   sudo usermod -aG docker,tty,uucp $USER
 }
