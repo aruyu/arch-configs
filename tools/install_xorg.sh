@@ -52,7 +52,8 @@ function install_essentials()
   sudo pacman -S --needed --noconfirm inetutils iptables net-tools openssh samba
   sudo systemctl enable iptables.service
 
-  sudo pacman -S --needed --noconfirm python python-pip ruby jq
+  sudo pacman -S --needed --noconfirm python python-pip nodejs npm yarn
+  sudo pacman -S --needed --noconfirm ruby jq
   pip3 install --upgrade pip wheel setuptools
   pip3 install psutil
 }
@@ -106,7 +107,7 @@ function install_system_apps()
 
 function install_user_apps()
 {
-  sudo pacman -S --needed --noconfirm chromium firefox alacritty vscode
+  sudo pacman -S --needed --noconfirm chromium firefox alacritty code
   sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape xournalpp viewnior
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp parcellite xclip scrot
   sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk

@@ -52,7 +52,8 @@ function install_essentials()
   sudo pacman -S --needed --noconfirm inetutils iptables net-tools openssh samba
   sudo systemctl enable iptables.service
 
-  sudo pacman -S --needed --noconfirm python python-pip ruby jq rustup
+  sudo pacman -S --needed --noconfirm python python-pip nodejs npm yarn
+  sudo pacman -S --needed --noconfirm ruby jq rustup
   pip3 install --upgrade pip wheel setuptools
   rustup default stable
 }
@@ -91,7 +92,7 @@ function install_system_apps()
 
 function install_user_apps()
 {
-  sudo pacman -S --needed --noconfirm chromium firefox foot vscode
+  sudo pacman -S --needed --noconfirm chromium firefox foot
   sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp
   sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk
@@ -109,14 +110,16 @@ function install_aur()
   cd ${AUR_DIR}/trizen
   makepkg -si --noconfirm
 
-  trizen -S --needed --noconfirm debtap
-
-  trizen -S --needed --noconfirm ttf-symbola
-  trizen -S --needed --noconfirm nwg-launchers
-  trizen -S --needed --noconfirm nwg-look
-
   trizen -S --needed --noconfirm catppuccin-cursors-frappe
   sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Frappe-Dark-Cursors
+
+  trizen -S --needed --noconfirm debtap
+
+  trizen -S --needed --noconfirm nwg-launchers
+  trizen -S --needed --noconfirm nwg-look
+  trizen -S --needed --noconfirm ttf-symbola
+
+  trizen -S --needed --noconfirm visual-studio-code-bin
 
   trizen -S --needed --noconfirm waybar-hyprland-git
   trizen -S --needed --noconfirm wayout-git
