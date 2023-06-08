@@ -48,8 +48,8 @@ function install_essentials()
 
   sudo pacman -Syu
   sudo pacman -S --needed --noconfirm pacman-contrib base-devel bc
-  sudo pacman -S --needed --noconfirm git wget rsync unzip gdb
-  sudo pacman -S --needed --noconfirm inetutils iptables net-tools openssh samba
+  sudo pacman -S --needed --noconfirm git wget rsync unzip gdb inetutils iptables net-tools
+  sudo pacman -S --needed --noconfirm openssh openvpn networkmanager-openvpn samba
   sudo systemctl enable iptables.service
 
   sudo pacman -S --needed --noconfirm python python-pip nodejs npm yarn
@@ -97,7 +97,7 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp
   sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk
 
-  sudo pacman -S --needed --noconfirm docker minicom remmina
+  sudo pacman -S --needed --noconfirm docker minicom remmina freerdp
   sudo systemctl enable docker.service
   sudo usermod -aG docker,tty,uucp $USER
 }
