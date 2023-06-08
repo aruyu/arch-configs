@@ -112,7 +112,7 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp parcellite xclip scrot
   sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk
 
-  sudo pacman -S --needed --noconfirm docker minicom gtkterm remmina
+  sudo pacman -S --needed --noconfirm docker minicom remmina
   sudo systemctl enable docker.service
   sudo usermod -aG docker,tty,uucp $USER
 }
@@ -127,6 +127,10 @@ function install_aur()
 
   git clone https://aur.archlinux.org/font-symbola.git ${AUR_DIR}/font-symbola
   cd ${AUR_DIR}/font-symbola
+  makepkg -si --noconfirm
+
+  git clone https://aur.archlinux.org/gtkterm.git ${AUR_DIR}/gtkterm
+  cd ${AUR_DIR}/gtkterm
   makepkg -si --noconfirm
 
   git clone https://aur.archlinux.org/perl-linux-desktopfiles.git ${AUR_DIR}/perl-linux-desktopfiles
