@@ -118,6 +118,8 @@ function install_aur()
 
   trizen -S --needed --noconfirm nwg-launchers
   trizen -S --needed --noconfirm nwg-look
+
+  trizen -S --needed --noconfirm rate-mirrors
   trizen -S --needed --noconfirm ttf-symbola
 
   trizen -S --needed --noconfirm visual-studio-code-bin
@@ -140,8 +142,8 @@ function install_fonts()
   unzip JetBrainsMono.zip -d $HOME/.local/share/fonts/
   rm JetBrainsMono.zip
 
-  sudo pacman -S --needed --noconfirm noto-fonts-cjk noto-fonts-emoji
-  sudo pacman -S --needed --noconfirm font-manager
+  sudo pacman -S --needed --noconfirm noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+  sudo pacman -S --needed --noconfirm noto-fonts font-manager
   sudo pacman -S --needed --noconfirm papirus-icon-theme
 }
 

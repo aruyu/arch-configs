@@ -157,6 +157,10 @@ function install_aur()
   cd ${AUR_DIR}/psuinfo
   makepkg -si --noconfirm
 
+  git clone https://aur.archlinux.org/rate-mirrors.git ${AUR_DIR}/rate-mirrors
+  cd ${AUR_DIR}/rate-mirrors
+  makepkg -si --noconfirm
+
   git clone https://aur.archlinux.org/sysmontask.git ${AUR_DIR}/sysmontask
   cd ${AUR_DIR}/sysmontask
   makepkg -si --noconfirm
@@ -186,8 +190,8 @@ function install_fonts()
   unzip JetBrainsMono.zip -d $HOME/.local/share/fonts/
   rm JetBrainsMono.zip
 
-  sudo pacman -S --needed --noconfirm noto-fonts-cjk noto-fonts-emoji
-  sudo pacman -S --needed --noconfirm font-manager
+  sudo pacman -S --needed --noconfirm noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+  sudo pacman -S --needed --noconfirm noto-fonts font-manager
   sudo pacman -S --needed --noconfirm papirus-icon-theme
 }
 
