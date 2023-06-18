@@ -109,22 +109,22 @@ function install_aur()
   cd ${AUR_DIR}/trizen
   makepkg -si --noconfirm
 
-  trizen -S --needed --noconfirm autotiling
-  trizen -S --needed --noconfirm avizo
-  trizen -S --needed --noconfirm catppuccin-cursors-frappe
+  trizen -S --needed --noconfirm autotiling --sudo-autorepeat-at-runtime
+  trizen -S --needed --noconfirm avizo --sudo-autorepeat-at-runtime
+  trizen -S --needed --noconfirm catppuccin-cursors-frappe --sudo-autorepeat-at-runtime
   #sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Frappe-Dark-Cursors
 
-  trizen -S --needed --noconfirm debtap
-  trizen -S --needed --noconfirm gtkterm
+  trizen -S --needed --noconfirm debtap --sudo-autorepeat-at-runtime
+  trizen -S --needed --noconfirm gtkterm --sudo-autorepeat-at-runtime
 
-  trizen -S --needed --noconfirm nwg-launchers
-  trizen -S --needed --noconfirm nwg-look
+  trizen -S --needed --noconfirm nwg-launchers --sudo-autorepeat-at-runtime
+  trizen -S --needed --noconfirm nwg-look --sudo-autorepeat-at-runtime
 
-  trizen -S --needed --noconfirm rate-mirrors
-  trizen -S --needed --noconfirm ttf-symbola
+  trizen -S --needed --noconfirm rate-mirrors --sudo-autorepeat-at-runtime
+  trizen -S --needed --noconfirm ttf-symbola --sudo-autorepeat-at-runtime
 
-  trizen -S --needed --noconfirm wayout-git
-  trizen -S --needed --noconfirm wdisplays
+  trizen -S --needed --noconfirm wayout-git --sudo-autorepeat-at-runtime
+  trizen -S --needed --noconfirm wdisplays --sudo-autorepeat-at-runtime
 
   #sudo pacman -S lib32-mesa-libgl
   #git clone https://aur.archlinux.org/playonlinux.git ${AUR_DIR}/playonlinux
