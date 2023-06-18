@@ -52,9 +52,8 @@ function install_essentials()
   sudo pacman -S --needed --noconfirm openssh openvpn networkmanager-openvpn samba
   sudo systemctl enable iptables.service
 
-  sudo pacman -S --needed --noconfirm python python-pip nodejs npm yarn
-  sudo pacman -S --needed --noconfirm ruby jq rustup
-  pip3 install --upgrade pip wheel setuptools
+  sudo pacman -S --needed --noconfirm python python-pip python-setuptools 
+  sudo pacman -S --needed --noconfirm nodejs npm yarn ruby jq rustup
   rustup default stable
 }
 
@@ -74,7 +73,7 @@ EOF
 function install_wm()
 {
   sudo pacman -S --needed --noconfirm sway swaybg swaylock swayidle waybar
-  sudo pacman -S --needed --noconfirm dunst wofi autotiling
+  sudo pacman -S --needed --noconfirm dunst wofi
 }
 
 function install_others()
@@ -110,6 +109,7 @@ function install_aur()
   cd ${AUR_DIR}/trizen
   makepkg -si --noconfirm
 
+  trizen -S --needed --noconfirm autotiling
   trizen -S --needed --noconfirm avizo
   trizen -S --needed --noconfirm catppuccin-cursors-frappe
   #sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Frappe-Dark-Cursors
