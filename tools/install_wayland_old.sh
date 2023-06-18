@@ -1,6 +1,6 @@
 #!/bin/bash
 #==
-#   NOTE      - install_wayland.sh
+#   NOTE      - install_wayland_old.sh
 #   Author    - Aru
 #
 #   Created   - 2023.05.10
@@ -61,7 +61,7 @@ function install_essentials()
 function install_dm()
 {
   sudo pacman -S --needed --noconfirm wayland wayland-utils
-  sudo pacman -S --needed --noconfirm gdm libdrm xdg-desktop-portal-wlr
+  sudo pacman -S --needed --noconfirm gdm libdrm xdg-desktop-portal-hyprland
   sudo systemctl enable gdm.service
 
   ## bugfix 'at-spi2-core' pkg for gdm's slow startup.
@@ -73,14 +73,14 @@ EOF
 
 function install_wm()
 {
-  sudo pacman -S --needed --noconfirm sway swaybg swaylock swayidle waybar
-  sudo pacman -S --needed --noconfirm dunst wofi autotiling
+  sudo pacman -S --needed --noconfirm hyprland swaybg swaylock swayidle
+  sudo pacman -S --needed --noconfirm dunst wofi
 }
 
 function install_others()
 {
   sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pulseaudio-bluetooth
-  sudo pacman -S --needed --noconfirm mpd brightnessctl pamixer
+  sudo pacman -S --needed --noconfirm mpd brightnessctl
 }
 
 function install_system_apps()
@@ -92,7 +92,7 @@ function install_system_apps()
 
 function install_user_apps()
 {
-  sudo pacman -S --needed --noconfirm chromium firefox foot code
+  sudo pacman -S --needed --noconfirm chromium firefox foot
   sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp
   sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk
@@ -110,9 +110,8 @@ function install_aur()
   cd ${AUR_DIR}/trizen
   makepkg -si --noconfirm
 
-  trizen -S --needed --noconfirm avizo
   trizen -S --needed --noconfirm catppuccin-cursors-frappe
-  #sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Frappe-Dark-Cursors
+  sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Frappe-Dark-Cursors
 
   trizen -S --needed --noconfirm debtap
   trizen -S --needed --noconfirm gtkterm
@@ -123,6 +122,9 @@ function install_aur()
   trizen -S --needed --noconfirm rate-mirrors
   trizen -S --needed --noconfirm ttf-symbola
 
+  trizen -S --needed --noconfirm visual-studio-code-bin
+
+  trizen -S --needed --noconfirm waybar-hyprland-git
   trizen -S --needed --noconfirm wayout-git
   trizen -S --needed --noconfirm wdisplays
 
