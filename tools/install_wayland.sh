@@ -52,7 +52,7 @@ function install_essentials()
   sudo pacman -S --needed --noconfirm openssh openvpn networkmanager-openvpn samba
   sudo systemctl enable iptables.service
 
-  sudo pacman -S --needed --noconfirm python python-pip python-setuptools 
+  sudo pacman -S --needed --noconfirm python python-pip python-setuptools
   sudo pacman -S --needed --noconfirm nodejs npm yarn ruby jq rustup
   rustup default stable
 }
@@ -62,12 +62,6 @@ function install_dm()
   sudo pacman -S --needed --noconfirm wayland wayland-utils
   sudo pacman -S --needed --noconfirm gdm libdrm xdg-desktop-portal-wlr
   sudo systemctl enable gdm.service
-
-  ## bugfix 'at-spi2-core' pkg for gdm's slow startup.
-  #  Disable AT-SPI Bridge.
-  sudo su <<-EOF
-	echo 'NO_AT_BRIDGE=1' >> /etc/environments
-EOF
 }
 
 function install_wm()
@@ -91,7 +85,7 @@ function install_system_apps()
 
 function install_user_apps()
 {
-  sudo pacman -S --needed --noconfirm chromium firefox foot code
+  sudo pacman -S --needed --noconfirm chromium firefox foot
   sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp
   sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk
@@ -112,7 +106,7 @@ function install_aur()
   trizen -S --needed --noconfirm autotiling --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm avizo --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm catppuccin-cursors-frappe --sudo-autorepeat-at-runtime
-  #sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Frappe-Dark-Cursors
+  sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Frappe-Dark-Cursors
 
   trizen -S --needed --noconfirm debtap --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm gtkterm --sudo-autorepeat-at-runtime
@@ -122,6 +116,8 @@ function install_aur()
 
   trizen -S --needed --noconfirm rate-mirrors --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm ttf-symbola --sudo-autorepeat-at-runtime
+
+  trizen -S --needed --noconfirm visual-studio-code-bin --sudo-autorepeat-at-runtime
 
   trizen -S --needed --noconfirm wayout-git --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm wdisplays --sudo-autorepeat-at-runtime

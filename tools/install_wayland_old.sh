@@ -52,9 +52,8 @@ function install_essentials()
   sudo pacman -S --needed --noconfirm openssh openvpn networkmanager-openvpn samba
   sudo systemctl enable iptables.service
 
-  sudo pacman -S --needed --noconfirm python python-pip nodejs npm yarn
-  sudo pacman -S --needed --noconfirm ruby jq rustup
-  pip3 install --upgrade pip wheel setuptools
+  sudo pacman -S --needed --noconfirm python python-pip python-setuptools
+  sudo pacman -S --needed --noconfirm nodejs npm yarn ruby jq rustup
   rustup default stable
 }
 
@@ -63,12 +62,6 @@ function install_dm()
   sudo pacman -S --needed --noconfirm wayland wayland-utils
   sudo pacman -S --needed --noconfirm gdm libdrm xdg-desktop-portal-hyprland
   sudo systemctl enable gdm.service
-
-  ## bugfix 'at-spi2-core' pkg for gdm's slow startup.
-  #  Disable AT-SPI Bridge.
-  sudo su <<-EOF
-	echo 'NO_AT_BRIDGE=1' >> /etc/environments
-EOF
 }
 
 function install_wm()
