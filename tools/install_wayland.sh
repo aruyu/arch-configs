@@ -79,7 +79,7 @@ function install_others()
 function install_system_apps()
 {
   sudo pacman -S --needed --noconfirm network-manager-applet blueman pavucontrol
-  sudo pacman -S --needed --noconfirm ibus ibus-libpinyin ibus-hangul nautilus nautilus-share file-roller
+  sudo pacman -S --needed --noconfirm nautilus nautilus-share file-roller
   sudo pacman -S --needed --noconfirm gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
 }
 
@@ -110,6 +110,13 @@ function install_aur()
 
   trizen -S --needed --noconfirm debtap --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm gtkterm --sudo-autorepeat-at-runtime
+  trizen -S --needed --noconfirm kime --sudo-autorepeat-at-runtime
+  sudo su <<-REALEND
+	cat >> /etc/environments <<-EOF
+	GTK_IM_MODULE=kime
+	QT_IM_MODULE=kime
+EOF
+REALEND
 
   trizen -S --needed --noconfirm nwg-launchers --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm nwg-look --sudo-autorepeat-at-runtime
