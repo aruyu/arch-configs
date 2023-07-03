@@ -88,7 +88,7 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm chromium firefox foot
   sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp
-  sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk
+  sudo pacman -S --needed --noconfirm htop neofetch gsimplecal
 
   sudo pacman -S --needed --noconfirm docker minicom remmina freerdp
   sudo systemctl enable docker.service
@@ -124,6 +124,7 @@ REALEND
   trizen -S --needed --noconfirm rate-mirrors --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm ttf-symbola --sudo-autorepeat-at-runtime
 
+  trizen -S --needed --noconfirm uno-calculator-bin --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm visual-studio-code-bin --sudo-autorepeat-at-runtime
 
   trizen -S --needed --noconfirm wayout-git --sudo-autorepeat-at-runtime
