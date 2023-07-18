@@ -14,7 +14,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/aruyu/arch-configs/master/
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/aruyu/arch-configs/master/tools/install_surface.sh)"
 ```
 
-## Installation scripts for Desktop Manager and Window Manager
+## Scripts to install Desktop Manager and Window Manager
 
 <details>
 <summary><b>For Xorg, X11 (SDDM + Openbox WM)</b></summary>
@@ -30,13 +30,17 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/aruyu/arch-configs/master/
 </details>
 
 <details>
-<summary><b>For Wayland (GDM + Hyprland WM)</b></summary>
+<summary><b>For Wayland (GDM + Sway compositor)</b></summary>
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/aruyu/arch-configs/master/tools/install_wayland.sh)"
 ```
 
-*Additianally, if you need Hyprland configs, check out my personal Hyprland dotfiles.*
+*If you need Sway configs, check out my personal Sway dotfiles.*
+
+> https://github.com/aruyu/sway-dotfiles
+
+*Alternatively, check out my personal Hyprland dotfiles.*
 
 > https://github.com/aruyu/hyprland-dotfiles
 
