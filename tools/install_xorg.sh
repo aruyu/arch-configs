@@ -48,8 +48,8 @@ function install_essentials()
 
   sudo pacman -Syu
   sudo pacman -S --needed --noconfirm pacman-contrib base-devel bc
-  sudo pacman -S --needed --noconfirm git wget rsync unzip gdb inetutils iptables net-tools
-  sudo pacman -S --needed --noconfirm openssh openvpn networkmanager-openvpn samba
+  sudo pacman -S --needed --noconfirm git wget rsync unzip gdb inetutils net-tools usbutils
+  sudo pacman -S --needed --noconfirm iptables openssh openvpn networkmanager-openvpn samba
   sudo systemctl enable iptables.service
 
   sudo pacman -S --needed --noconfirm python python-pip nodejs npm yarn
