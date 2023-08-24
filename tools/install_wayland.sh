@@ -74,6 +74,7 @@ function install_others()
 {
   sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pulseaudio-bluetooth
   sudo pacman -S --needed --noconfirm mpd brightnessctl pamixer
+  sudo pacman -S --needed --noconfirm fcitx fcitx-libpinyin fcitx-mozc fcitx-hangul fcitx-configtool
 }
 
 function install_system_apps()
@@ -110,13 +111,6 @@ function install_aur()
 
   trizen -S --needed --noconfirm debtap --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm gtkterm --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm kime --sudo-autorepeat-at-runtime
-  sudo su <<-REALEND
-	cat >> /etc/environments <<-EOF
-	GTK_IM_MODULE=kime
-	QT_IM_MODULE=kime
-EOF
-REALEND
 
   trizen -S --needed --noconfirm nwg-launchers --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm nwg-look --sudo-autorepeat-at-runtime
