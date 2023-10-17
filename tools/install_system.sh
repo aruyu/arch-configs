@@ -238,7 +238,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 config_arch || error_exit "Arch configuration failed."
 fdisk -l
 cat /mnt/etc/fstab
-script_print_notify "Default passwords is all the same as ID.\n"
+script_print_notify "Default passwords are all the same as ID.\n"
 script_print_notify "Please change the passwords.\n"
 
 umount -R /mnt
