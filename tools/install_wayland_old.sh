@@ -107,6 +107,7 @@ function install_aur()
   sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Frappe-Dark-Cursors
 
   trizen -S --needed --noconfirm debtap
+  trizen -S --needed --noconfirm downgrade
   trizen -S --needed --noconfirm gtkterm
 
   trizen -S --needed --noconfirm nwg-launchers
