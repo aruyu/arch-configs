@@ -48,8 +48,8 @@ function install_essentials()
 
   sudo pacman -Syu
   sudo pacman -S --needed --noconfirm pacman-contrib base-devel bc
-  sudo pacman -S --needed --noconfirm git wget rsync unzip gdb inetutils iptables net-tools
-  sudo pacman -S --needed --noconfirm openssh openvpn networkmanager-openvpn samba
+  sudo pacman -S --needed --noconfirm git wget rsync unzip gdb inetutils net-tools usbutils
+  sudo pacman -S --needed --noconfirm iptables openssh openvpn networkmanager-openvpn samba
   sudo systemctl enable iptables.service
 
   sudo pacman -S --needed --noconfirm python python-pip python-setuptools
@@ -88,7 +88,7 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm chromium firefox foot
   sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp
-  sudo pacman -S --needed --noconfirm htop neofetch gsimplecal qalculate-gtk
+  sudo pacman -S --needed --noconfirm htop neofetch gsimplecal wev
 
   sudo pacman -S --needed --noconfirm docker minicom remmina freerdp
   sudo systemctl enable docker.service
@@ -115,7 +115,10 @@ function install_aur()
 
   trizen -S --needed --noconfirm rate-mirrors
   trizen -S --needed --noconfirm ttf-symbola
+  trizen -S --needed --noconfirm tty-clock
 
+  trizen -S --needed --noconfirm uno-calculator-bin
+  trizen -S --needed --noconfirm uxplay
   trizen -S --needed --noconfirm visual-studio-code-bin
 
   trizen -S --needed --noconfirm waybar-hyprland-git
