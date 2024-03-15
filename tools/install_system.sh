@@ -153,12 +153,16 @@ EOF
 	blacklist snd_pcsp
 EOF
 
-	pacman -S --needed --noconfirm networkmanager
+	pacman -S --needed --noconfirm networkmanager avahi
 	pacman -S --needed --noconfirm dhclient iwd
 
 	systemctl stop --now wpa_supplicant.service
 	killall wpa_supplicant
 	systemctl mask wpa_supplicant.service
+
+	systemctl stop --now systemd-resolved.service
+	killall systemd-resolved.service
+	systemctl mask systemd-resolved.service
 
 	cat >> /etc/NetworkManager/conf.d/dhcp-client.conf <<-EOF
 	[main]
@@ -180,6 +184,12 @@ EOF
 	wifi.cloned-mac-address=stable
 EOF
 
+	cat >> /etc/NetworkManager/conf.d/multicast-dns.conf <<-EOF
+	[connection]
+	connection.mdns=yes
+EOF
+
+	systemctl enable avahi-daemon.service
 	systemctl enable NetworkManager.service
 
 	pacman -S --needed --noconfirm bluez bluez-utils
