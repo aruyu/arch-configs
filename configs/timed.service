@@ -1,0 +1,13 @@
+[Unit]
+Description=Set time from NetworkTime (bing.com) Daemon
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/timed
+ExecStop=
+RestartSec=1800s
+Restart=on-failure
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

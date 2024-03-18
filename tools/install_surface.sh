@@ -209,8 +209,11 @@ EOF
 	pacman -S --needed --noconfirm bluez bluez-utils
 	systemctl enable bluetooth.service
 
-	curl -o /etc/systemd/system/rfkill-unblock-all.service \
-	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/rfkill-unblock-all.service
+	curl -o /etc/systemd/system/timed.service \
+	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/timed.service
+	curl -o /usr/sbin/timed \
+	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/timed
+	systemctl enable timed.service
 
 	pacman -S --needed --noconfirm grub efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
