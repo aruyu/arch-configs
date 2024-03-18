@@ -59,8 +59,8 @@ function install_essentials()
 
 function install_dm()
 {
-  sudo pacman -S --needed --noconfirm wayland wayland-utils
-  sudo pacman -S --needed --noconfirm gdm libdrm xdg-desktop-portal-wlr
+  sudo pacman -S --needed --noconfirm wayland wayland-utils libdrm gdm
+  sudo pacman -S --needed --noconfirm xdg-desktop-portal-wlr xdg-desktop-portal-gnome
   sudo systemctl enable gdm.service
 }
 
@@ -74,7 +74,6 @@ function install_others()
 {
   sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pulseaudio-bluetooth
   sudo pacman -S --needed --noconfirm mpd brightnessctl pamixer
-  sudo pacman -S --needed --noconfirm fcitx fcitx-libpinyin fcitx-mozc fcitx-hangul fcitx-configtool
 }
 
 function install_system_apps()
@@ -82,12 +81,13 @@ function install_system_apps()
   sudo pacman -S --needed --noconfirm network-manager-applet blueman pavucontrol
   sudo pacman -S --needed --noconfirm nautilus nautilus-share file-roller
   sudo pacman -S --needed --noconfirm gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
+  sudo pacman -S --needed --noconfirm fcitx fcitx-libpinyin fcitx-mozc fcitx-hangul fcitx-configtool
 }
 
 function install_user_apps()
 {
   sudo pacman -S --needed --noconfirm chromium firefox foot
-  sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
+  sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape xournalpp
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp
   sudo pacman -S --needed --noconfirm htop neofetch gsimplecal wev
 
