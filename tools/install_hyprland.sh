@@ -1,6 +1,6 @@
 #!/bin/bash
 #==
-#   NOTE      - install_wayland_old.sh
+#   NOTE      - install_hyprland.sh
 #   Author    - Aru
 #
 #   Created   - 2023.05.10

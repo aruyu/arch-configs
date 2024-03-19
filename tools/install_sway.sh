@@ -1,6 +1,6 @@
 #!/bin/bash
 #==
-#   NOTE      - install_wayland.sh
+#   NOTE      - install_sway.sh
 #   Author    - Aru
 #
 #   Created   - 2023.05.10

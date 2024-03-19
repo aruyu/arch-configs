@@ -1,6 +1,6 @@
 #!/bin/bash
 #==
-#   NOTE      - install_xorg.sh
+#   NOTE      - install_openbox.sh
 #   Author    - Aru
 #
 #   Created   - 2023.02.22
