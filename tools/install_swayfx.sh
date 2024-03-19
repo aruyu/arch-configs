@@ -121,6 +121,7 @@ function install_aur()
 
   trizen -S --needed --noconfirm nwg-launchers --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm nwg-look --sudo-autorepeat-at-runtime
+  trizen -S --needed --noconfirm pasystray-wayland --sudo-autorepeat-at-runtime
 
   trizen -S --needed --noconfirm rate-mirrors --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm ttf-symbola --sudo-autorepeat-at-runtime
