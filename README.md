@@ -20,7 +20,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/aruyu/arch-configs/master/
 <summary><b>For Xorg, X11 (SDDM + Openbox WM)</b></summary>
 
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/aruyu/arch-configs/master/tools/install_xorg.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/aruyu/arch-configs/master/tools/install_openbox.sh)"
 ```
 
 *Additianally, if you need Openbox configs, check out my personal Openbox dotfiles.*
@@ -30,10 +30,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/aruyu/arch-configs/master/
 </details>
 
 <details>
-<summary><b>For Wayland (GDM + Sway compositor)</b></summary>
+<summary><b>For Wayland (GDM + SwayFx Compositor)</b></summary>
 
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/aruyu/arch-configs/master/tools/install_wayland.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/aruyu/arch-configs/master/tools/install_swayfx.sh)"
 ```
 
 *If you need Sway configs, check out my personal Sway dotfiles.*
