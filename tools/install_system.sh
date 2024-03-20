@@ -199,6 +199,8 @@ EOF
 	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/timed.service
 	curl -o /usr/sbin/timed \
 	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/timed
+
+	chmod a+x /usr/sbin/timed
 	systemctl enable timed.service
 
 	pacman -S --needed --noconfirm grub efibootmgr
@@ -208,6 +210,7 @@ EOF
 	sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/s/"$/ usbcore.autosuspend=-1 btusb.enable_autosuspend=0"/' /etc/default/grub
 	sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=suspend/' /etc/systemd/logind.conf
 	grub-mkconfig -o /boot/grub/grub.cfg
+	efibootmgr -c -d ${DISK_PATH} -p 1 -L "Arch Linux" -l "\EFI\BOOT\BOOTX64.EFI"
 
 	passwd <<-EOF
 	root
