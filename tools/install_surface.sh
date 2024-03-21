@@ -217,6 +217,14 @@ EOF
 	chmod a+x /usr/sbin/timed
 	systemctl enable timed.service
 
+	curl -o /etc/systemd/system/fixbuttond.service \
+	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/fixbuttond.service
+	curl -o /usr/sbin/fixbuttond \
+	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/fixbuttond
+
+	chmod a+x /usr/sbin/fixbuttond
+	systemctl enable fixbuttond.service
+
 	pacman -S --needed --noconfirm grub efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
 	sed -i '/^GRUB_TIMEOUT=/s/5/0/g' /etc/default/grub

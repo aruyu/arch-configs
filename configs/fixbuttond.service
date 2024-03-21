@@ -1,0 +1,11 @@
+[Unit]
+Description=Fix SOC Button Driver for Surface pro 8 Daemon
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/fixbuttond
+ExecStop=
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

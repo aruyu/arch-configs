@@ -1,0 +1,86 @@
+#!/bin/bash
+#==
+#   NOTE      - fixbuttond
+#   Author    - Aru
+#
+#   Created   - 2024.03.21
+#   Github    - https://github.com/aruyu
+#   Contact   - vine9151@gmail.com
+#/
+
+
+
+T_CO_RED='\e[1;31m'
+T_CO_YELLOW='\e[1;33m'
+T_CO_GREEN='\e[1;32m'
+T_CO_BLUE='\e[1;34m'
+T_CO_GRAY='\e[1;30m'
+T_CO_NC='\e[0m'
+
+CURRENT_PROGRESS=0
+
+function script_print()
+{
+  echo -ne "${T_CO_BLUE}[SCRIPT]${T_CO_NC}$1"
+}
+
+function script_notify_print()
+{
+  echo -ne "${T_CO_BLUE}[SCRIPT]${T_CO_NC}${T_CO_GREEN}-Notify- $1${T_CO_NC}"
+}
+
+function script_error_print()
+{
+  echo -ne "${T_CO_BLUE}[SCRIPT]${T_CO_NC}${T_CO_RED}-Error- $1${T_CO_NC}"
+}
+
+function script_println()
+{
+  echo -ne "${T_CO_BLUE}[SCRIPT]${T_CO_NC}$1\n"
+}
+
+function script_notify_println()
+{
+  echo -ne "${T_CO_BLUE}[SCRIPT]${T_CO_NC}${T_CO_GREEN}-Notify- $1${T_CO_NC}\n"
+}
+
+function script_error_println()
+{
+  echo -ne "${T_CO_BLUE}[SCRIPT]${T_CO_NC}${T_CO_RED}-Error- $1${T_CO_NC}\n"
+}
+
+function error_exit()
+{
+  script_error_println "$1\n"
+  exit 1
+}
+
+
+
+
+#==
+#   Starting codes in blew
+#/
+
+if [[ $EUID -ne 0 ]]; then
+  error_exit "This script must be run as ROOT!"
+fi
+
+
+check_value=$(echo $(dmesg | grep gpio-keys) | awk '{print $1}')
+module_dir=$(echo $(find / | grep soc_button_array) | awk '{print $1}')
+
+
+if [[ -z ${check_value} ]]; then
+
+  if [[ ${module_dir} == *"soc_button_array"* ]]; then
+    rmmod soc_button_array || error_exit "Remove soc_button_array module failed."
+    insmod ${module_dir} || error_exit "Insert soc_button_array module failed."
+    script_notify_println "SOC Buttons are successfully fixed."
+  else
+    error_exit "soc_button_array module is not exist!"
+  fi
+
+else
+  script_notify_println "SOC Buttons are successfully loaded."
+fi
