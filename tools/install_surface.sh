@@ -141,6 +141,9 @@ EOF
 	pacman -Syu
 	pacman -S --needed --noconfirm linux-surface linux-surface-headers iptsd #linux-surface-secureboot-mok
 
+	sed -i 's/# DisableOnPalm = false/DisableOnPalm = true/' /etc/iptsd.conf
+	sed -i 's/# DisableOnStylus = false/DisableOnStylus = true/' /etc/iptsd.conf
+
 	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 	hwclock --systohc
 
