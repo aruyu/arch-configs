@@ -53,7 +53,7 @@ function install_essentials()
   sudo systemctl enable iptables.service
 
   sudo pacman -S --needed --noconfirm python python-pip python-setuptools
-  sudo pacman -S --needed --noconfirm nodejs npm yarn ruby jq rustup
+  sudo pacman -S --needed --noconfirm nodejs npm yarn ruby jq rustup man
   rustup default stable
 }
 
