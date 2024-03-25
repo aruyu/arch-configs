@@ -82,11 +82,13 @@ function install_system_apps()
   sudo pacman -S --needed --noconfirm nautilus nautilus-share file-roller
   sudo pacman -S --needed --noconfirm gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
   sudo pacman -S --needed --noconfirm fcitx fcitx-libpinyin fcitx-mozc fcitx-hangul fcitx-configtool
-  sudo cat >> /etc/environment <<-EOF
+  sudo su <<-REALEND
+	cat >> /etc/environment <<-EOF
 	GTK_IM_MODULE=fcitx
 	QT_IM_MODULE=fcitx
 	XMODIFIERS=@im=fcitx
 EOF
+REALEND
 }
 
 function install_user_apps()
