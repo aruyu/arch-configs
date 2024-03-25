@@ -87,7 +87,8 @@ function install_system_apps()
   sudo pacman -S --needed --noconfirm network-manager-applet blueman pavucontrol
   sudo pacman -S --needed --noconfirm nautilus nautilus-share file-roller
   sudo pacman -S --needed --noconfirm gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
-  sudo pacman -S --needed --noconfirm fcitx fcitx-libpinyin fcitx-mozc fcitx-hangul fcitx-configtool
+  sudo pacman -S --needed --noconfirm fcitx5 fcitx5-qt fcitx5-gtk fcitx5-lua fcitx5-configtool fcitx5-material-color
+  sudo pacman -S --needed --noconfirm fcitx5-hangul fcitx5-mozc fcitx5-rime rime-pinyin-zhwiki
 }
 
 function install_user_apps()
@@ -133,6 +134,7 @@ function install_aur()
 
   trizen -S --needed --noconfirm wayout-git --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm wdisplays --sudo-autorepeat-at-runtime
+  trizen -S --needed --noconfirm wvkbd --sudo-autorepeat-at-runtime
 
   #sudo pacman -S lib32-mesa-libgl
   #git clone https://aur.archlinux.org/playonlinux.git ${AUR_DIR}/playonlinux
