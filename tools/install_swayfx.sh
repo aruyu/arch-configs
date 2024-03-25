@@ -89,6 +89,11 @@ function install_system_apps()
   sudo pacman -S --needed --noconfirm gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
   sudo pacman -S --needed --noconfirm fcitx5 fcitx5-qt fcitx5-gtk fcitx5-lua fcitx5-configtool fcitx5-material-color
   sudo pacman -S --needed --noconfirm fcitx5-hangul fcitx5-mozc fcitx5-rime rime-pinyin-zhwiki
+  sudo cat >> /etc/environment <<-EOF
+	GTK_IM_MODULE=fcitx
+	QT_IM_MODULE=fcitx
+	XMODIFIERS=@im=fcitx
+EOF
 }
 
 function install_user_apps()
