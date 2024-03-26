@@ -68,12 +68,12 @@ fi
 
 
 check_value=$(echo $(dmesg | grep gpio-keys) | awk '{print $1}')
-module_dir=$(echo $(find / | grep soc_button_array) | awk '{print $1}')
+module_dir=$(echo $(find / | grep soc_button_array.ko.zst) | awk '{print $1}')
 
 
 if [[ -z ${check_value} ]]; then
 
-  if [[ ${module_dir} == *"soc_button_array"* ]]; then
+  if [[ ${module_dir} == *"soc_button_array.ko.zst" ]]; then
     rmmod soc_button_array || error_exit "Remove soc_button_array module failed."
     insmod ${module_dir} || error_exit "Insert soc_button_array module failed."
     script_notify_println "SOC Buttons are successfully fixed."

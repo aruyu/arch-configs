@@ -5,6 +5,10 @@ Description=Fix SOC Button Driver for Surface pro 8 Daemon
 Type=oneshot
 ExecStart=/usr/sbin/fixbuttond
 ExecStop=
+RestartSec=5s
+Restart=on-failure
+StartLimitIntervalSec=30s
+StartLimitBurst=5
 RemainAfterExit=yes
 
 [Install]
