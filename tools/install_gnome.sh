@@ -64,8 +64,8 @@ function install_dm()
   sudo systemctl enable gdm.service
 }
 
-function install_wm()
-{
+#function install_wm()
+#{
 #  AUR_DIR=$HOME/.cache/trizen/sources
 #
 #  git clone https://aur.archlinux.org/swayfx.git ${AUR_DIR}/swayfx
@@ -74,13 +74,13 @@ function install_wm()
 #
 #  sudo pacman -S --needed --noconfirm swaybg swaylock swayidle waybar
 #  sudo pacman -S --needed --noconfirm dunst wofi
-}
+#}
 
-function install_others()
-{
+#function install_others()
+#{
 #  sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pulseaudio-bluetooth
 #  sudo pacman -S --needed --noconfirm mpd brightnessctl pamixer
-}
+#}
 
 function install_system_apps()
 {
