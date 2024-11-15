@@ -184,10 +184,10 @@ install_essentials || error_exit "Essentials installation failed."
 install_dm || error_exit "Wayland & DM installation failed."
 
 #-- [VIEW] WM
-install_wm || error_exit "WM installation failed."
+#install_wm || error_exit "WM installation failed."
 
 #-- [SYS] Others
-install_others || error_exit "Other systems installation failed."
+#install_others || error_exit "Other systems installation failed."
 
 #-- [APPS] System apps
 install_system_apps || error_exit "System apps installation failed."
