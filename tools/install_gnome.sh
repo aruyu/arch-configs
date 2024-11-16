@@ -82,8 +82,8 @@ function install_system_apps()
 
 function install_user_apps()
 {
-  sudo pacman -S --needed --noconfirm chromium firefox gnome-terminal
-  sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
+  sudo pacman -S --needed --noconfirm chromium firefox gnome-terminal gnome-tweaks
+  sudo pacman -S --needed --noconfirm gimp inkscape rnote
 #  sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp wl-clipboard
 #  sudo pacman -S --needed --noconfirm htop neofetch gsimplecal wev evtest
   sudo pacman -S --needed --noconfirm htop neofetch
