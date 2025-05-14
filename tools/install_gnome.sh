@@ -1,9 +1,9 @@
 #!/bin/bash
 #==
-#   NOTE      - install_swayfx.sh
+#   NOTE      - install_gnome.sh
 #   Author    - Aru
 #
-#   Created   - 2024.03.19
+#   Created   - 2024.11.14
 #   Github    - https://github.com/aruyu
 #   Contact   - vine9151@gmail.com
 #/
@@ -69,15 +69,14 @@ function install_system_apps()
 #  sudo pacman -S --needed --noconfirm network-manager-applet blueman pavucontrol
   sudo pacman -S --needed --noconfirm nautilus nautilus-share file-roller
   sudo pacman -S --needed --noconfirm gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
-#  sudo pacman -S --needed --noconfirm fcitx5 fcitx5-qt fcitx5-gtk fcitx5-lua fcitx5-configtool fcitx5-material-color
-#  sudo pacman -S --needed --noconfirm fcitx5-hangul fcitx5-mozc fcitx5-rime rime-pinyin-zhwiki
-#  sudo su <<-REALEND
-#	cat >> /etc/environment <<-EOF
-#	GTK_IM_MODULE=fcitx
-#	QT_IM_MODULE=fcitx
-#	XMODIFIERS=@im=fcitx
-#EOF
-#REALEND
+  sudo pacman -S --needed --noconfirm ibus ibus-hangul ibus-anthy ibus-rime
+  sudo su <<-REALEND
+	cat >> /etc/environment <<-EOF
+	GTK_IM_MODULE=ibus
+	QT_IM_MODULE=ibus
+	XMODIFIERS=@im=ibus
+EOF
+REALEND
 }
 
 function install_user_apps()
