@@ -60,7 +60,7 @@ function install_essentials()
 function install_dm()
 {
   sudo pacman -S --needed --noconfirm gnome gdm
-  sudo pacman -S --needed --noconfirm xdg-desktop-portal-gnome
+  sudo pacman -S --needed --noconfirm xdg-desktop-portal-gnome xorg-xhost
   sudo systemctl enable gdm.service
 }
 
@@ -82,9 +82,8 @@ REALEND
 function install_user_apps()
 {
   sudo pacman -S --needed --noconfirm chromium firefox gnome-terminal gnome-tweaks
+  sudo pacman -S --needed --noconfirm dconf-editor grub-customizer
   sudo pacman -S --needed --noconfirm gimp inkscape rnote
-#  sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp wl-clipboard
-#  sudo pacman -S --needed --noconfirm htop neofetch gsimplecal wev evtest
   sudo pacman -S --needed --noconfirm htop neofetch
 
   sudo pacman -S --needed --noconfirm docker minicom remmina freerdp
