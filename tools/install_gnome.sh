@@ -66,7 +66,6 @@ function install_dm()
 
 function install_system_apps()
 {
-#  sudo pacman -S --needed --noconfirm network-manager-applet blueman pavucontrol
   sudo pacman -S --needed --noconfirm nautilus nautilus-share file-roller
   sudo pacman -S --needed --noconfirm gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
   sudo pacman -S --needed --noconfirm ibus ibus-hangul ibus-anthy ibus-rime
@@ -82,8 +81,8 @@ REALEND
 function install_user_apps()
 {
   sudo pacman -S --needed --noconfirm chromium firefox gnome-terminal gnome-tweaks
+  sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
   sudo pacman -S --needed --noconfirm dconf-editor grub-customizer
-  sudo pacman -S --needed --noconfirm gimp inkscape rnote
   sudo pacman -S --needed --noconfirm htop neofetch
 
   sudo pacman -S --needed --noconfirm docker minicom remmina freerdp

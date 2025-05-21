@@ -248,7 +248,7 @@ EOF
 	${USER_NAME}
 EOF
 
-	pacman -S --needed --noconfirm sudo vim
+	pacman -S --needed --noconfirm sudo vim nano
 	sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 	ln -s /usr/bin/vim /usr/bin/vi
 REALEND
