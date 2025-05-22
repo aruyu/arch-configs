@@ -91,7 +91,7 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp
   sudo pacman -S --needed --noconfirm htop neofetch gsimplecal wev
 
-  sudo pacman -S --needed --noconfirm docker minicom remmina freerdp
+  sudo pacman -S --needed --noconfirm docker docker-compose minicom remmina freerdp
   sudo systemctl enable docker.service
   sudo usermod -aG docker,tty,uucp $USER
 }
