@@ -47,13 +47,13 @@ function install_essentials()
   sudo cp /root/.bashrc $HOME/.bashrc
 
   sudo pacman -Syu
-  sudo pacman -S --needed --noconfirm pacman-contrib base-devel bc
-  sudo pacman -S --needed --noconfirm git wget rsync unzip gdb inetutils net-tools usbutils
+  sudo pacman -S --needed --noconfirm pacman-contrib base-devel bc gdb
+  sudo pacman -S --needed --noconfirm git wget rsync unzip cpio inetutils net-tools usbutils
   sudo pacman -S --needed --noconfirm iptables openssh openvpn networkmanager-openvpn samba
   sudo systemctl enable iptables.service
 
   sudo pacman -S --needed --noconfirm python python-pip python-setuptools
-  sudo pacman -S --needed --noconfirm nodejs npm yarn ruby jq rustup
+  sudo pacman -S --needed --noconfirm nodejs npm yarn ruby jq rustup man
   rustup default stable
 }
 
@@ -79,7 +79,7 @@ function install_others()
 function install_system_apps()
 {
   sudo pacman -S --needed --noconfirm network-manager-applet blueman pavucontrol
-  sudo pacman -S --needed --noconfirm nautilus nautilus-share file-roller
+  sudo pacman -S --needed --noconfirm nautilus nautilus-share file-roller ntfs-3g
   sudo pacman -S --needed --noconfirm gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
   sudo pacman -S --needed --noconfirm ibus ibus-libpinyin ibus-hangul
 }
@@ -89,7 +89,7 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm chromium firefox foot
   sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape xournalpp
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp
-  sudo pacman -S --needed --noconfirm htop neofetch gsimplecal wev
+  sudo pacman -S --needed --noconfirm htop neofetch gsimplecal wev evtest
 
   sudo pacman -S --needed --noconfirm docker docker-compose minicom remmina freerdp
   sudo systemctl enable docker.service
