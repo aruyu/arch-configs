@@ -80,9 +80,8 @@ REALEND
 
 function install_user_apps()
 {
-  sudo pacman -S --needed --noconfirm chromium firefox gnome-terminal gnome-tweaks
+  sudo pacman -S --needed --noconfirm chromium firefox gnome-terminal gnome-tweaks dconf-editor
   sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
-  sudo pacman -S --needed --noconfirm dconf-editor grub-customizer
   sudo pacman -S --needed --noconfirm htop neofetch
 
   sudo pacman -S --needed --noconfirm docker docker-compose minicom remmina freerdp
@@ -105,6 +104,7 @@ function install_aur()
 
   trizen -S --needed --noconfirm debtap --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm downgrade --sudo-autorepeat-at-runtime
+  trizen -S --needed --noconfirm grub-customizer --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm gtkterm --sudo-autorepeat-at-runtime
 
 #  trizen -S --needed --noconfirm nwg-launchers --sudo-autorepeat-at-runtime
