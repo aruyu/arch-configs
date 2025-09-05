@@ -10,6 +10,8 @@ sudo iptables -A INPUT -s 10.79.3.0/24 -j ACCEPT
 sudo iptables -A INPUT -s 10.79.4.0/24 -j ACCEPT
 #sudo iptables -A INPUT -p icmp -j ACCEPT
 sudo iptables -A INPUT -i lo -j ACCEPT
+#sudo iptables -A INPUT -i docker0 -j ACCEPT
+sudo iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 sudo iptables -A INPUT -j REJECT #--reject-with icmp-host-prohibited
 
 sudo iptables -P INPUT DROP
