@@ -1,6 +1,6 @@
 # Arch Configs
 
-## Installation scripts for Arch linux
+## Configs & installation scripts for Arch Linux
 
 * Default systems
 
