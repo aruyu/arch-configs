@@ -134,6 +134,7 @@ function install_aur()
 
   trizen -S --needed --noconfirm wayout-git --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm wdisplays --sudo-autorepeat-at-runtime
+  trizen -S --needed --noconfirm wvkbd --sudo-autorepeat-at-runtime
 
   #sudo pacman -S lib32-mesa-libgl
   #git clone https://aur.archlinux.org/playonlinux.git ${AUR_DIR}/playonlinux

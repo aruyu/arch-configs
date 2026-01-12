@@ -97,31 +97,14 @@ function install_aur()
   cd ${AUR_DIR}/trizen
   makepkg -si --noconfirm
 
-#  trizen -S --needed --noconfirm autotiling --sudo-autorepeat-at-runtime
-#  trizen -S --needed --noconfirm avizo --sudo-autorepeat-at-runtime
-#  trizen -S --needed --noconfirm catppuccin-cursors-frappe --sudo-autorepeat-at-runtime
-#  sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Frappe-Dark-Cursors
-
   trizen -S --needed --noconfirm debtap --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm downgrade --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm grub-customizer --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm gtkterm --sudo-autorepeat-at-runtime
 
-#  trizen -S --needed --noconfirm nwg-launchers --sudo-autorepeat-at-runtime
-#  trizen -S --needed --noconfirm nwg-look --sudo-autorepeat-at-runtime
-#  trizen -S --needed --noconfirm pasystray-wayland --sudo-autorepeat-at-runtime
-
   trizen -S --needed --noconfirm rate-mirrors --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm ttf-symbola --sudo-autorepeat-at-runtime
   trizen -S --needed --noconfirm tty-clock --sudo-autorepeat-at-runtime
-
-#  trizen -S --needed --noconfirm uno-calculator-bin --sudo-autorepeat-at-runtime
-#  trizen -S --needed --noconfirm uxplay --sudo-autorepeat-at-runtime
-#  trizen -S --needed --noconfirm visual-studio-code-bin --sudo-autorepeat-at-runtime
-
-#  trizen -S --needed --noconfirm wayout-git --sudo-autorepeat-at-runtime
-#  trizen -S --needed --noconfirm wdisplays --sudo-autorepeat-at-runtime
-#  trizen -S --needed --noconfirm wvkbd --sudo-autorepeat-at-runtime
 
   #sudo pacman -S lib32-mesa-libgl
   #git clone https://aur.archlinux.org/playonlinux.git ${AUR_DIR}/playonlinux

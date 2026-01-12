@@ -82,6 +82,13 @@ function install_system_apps()
   sudo pacman -S --needed --noconfirm nautilus nautilus-share file-roller ntfs-3g
   sudo pacman -S --needed --noconfirm gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
   sudo pacman -S --needed --noconfirm ibus ibus-libpinyin ibus-hangul
+  sudo su <<-REALEND
+	cat >> /etc/environment <<-EOF
+	GTK_IM_MODULE=ibus
+	QT_IM_MODULE=ibus
+	XMODIFIERS=@im=ibus
+EOF
+REALEND
 }
 
 function install_user_apps()
