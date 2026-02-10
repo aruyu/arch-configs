@@ -212,21 +212,13 @@ EOF
 	pacman -S --needed --noconfirm bluez bluez-utils
 	systemctl enable bluetooth.service
 
-	curl -o /etc/systemd/system/timed.service \
-	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/timed.service
-	curl -o /usr/sbin/timed \
-	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/timed
+	curl -o /etc/systemd/system/rc-local.service \
+	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/rc-local.service
+	curl -o /etc/rc.local \
+	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/rc.local
 
-	chmod a+x /usr/sbin/timed
-	systemctl enable timed.service
-
-	curl -o /etc/systemd/system/fixbuttond.service \
-	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/fixbuttond.service
-	curl -o /usr/sbin/fixbuttond \
-	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/fixbuttond
-
-	chmod a+x /usr/sbin/fixbuttond
-	systemctl enable fixbuttond.service
+	chmod a+x /etc/rc.local
+	systemctl enable rc-local.service
 
 	pacman -S --needed --noconfirm grub efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
