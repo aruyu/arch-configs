@@ -82,7 +82,7 @@ function install_user_apps()
 {
   sudo pacman -S --needed --noconfirm chromium firefox gnome-terminal gnome-tweaks dconf-editor
   sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
-  sudo pacman -S --needed --noconfirm htop neofetch
+  sudo pacman -S --needed --noconfirm htop fastfetch
 
   sudo pacman -S --needed --noconfirm docker docker-compose minicom remmina freerdp
   sudo systemctl enable docker.service

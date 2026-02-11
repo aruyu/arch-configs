@@ -96,7 +96,7 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm chromium firefox foot
   sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp wl-clipboard
-  sudo pacman -S --needed --noconfirm htop neofetch gsimplecal wev evtest
+  sudo pacman -S --needed --noconfirm htop fastfetch gsimplecal wev evtest
 
   sudo pacman -S --needed --noconfirm docker docker-compose minicom remmina freerdp
   sudo systemctl enable docker.service
