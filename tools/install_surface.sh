@@ -141,11 +141,9 @@ EOF
 	pacman -Syu
 	pacman -S --needed --noconfirm linux-surface linux-surface-headers iptsd #linux-surface-secureboot-mok
 
-	sed -i 's/# DisableOnPalm = false/DisableOnPalm = true/' /etc/iptsd.conf
-	sed -i 's/# DisableOnStylus = false/DisableOnStylus = true/' /etc/iptsd.conf
-
 	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 	hwclock --systohc
+	systemctl enable --now systemd-timesyncd
 
 	sed -i 's/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen
 	sed -i 's/#ja_JP.UTF-8/ja_JP.UTF-8/g' /etc/locale.gen
@@ -158,11 +156,11 @@ EOF
 	LC_COLLATE=C
 EOF
 
-	echo 'arch' >> /etc/hostname
+	echo '${USER_NAME}-arch' >> /etc/hostname
 	cat >> /etc/hosts <<-EOF
 	127.0.1.1  localhost
 	::1        localhost
-	127.0.1.1  arch
+	127.0.1.1  ${USER_NAME}-arch
 EOF
 
 	cat >> /etc/modprobe.d/nobeep.conf <<-EOF
@@ -267,7 +265,7 @@ set_timezone
 init_disk || error_exit "Disk format failed."
 mount_disk || error_exit "Disk mounting failed."
 
-pacstrap -K /mnt base linux-firmware
+pacstrap -K /mnt base linux-headers linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
 config_arch || error_exit "Arch configuration failed."

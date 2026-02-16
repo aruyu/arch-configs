@@ -75,8 +75,12 @@ function config_arch()
   read -p "Enter a new user name: " -e USER_NAME
 
   arch-chroot /mnt <<-REALEND
+	pacman -Syu
+	pacman -S --needed --noconfirm linux-lts linux-lts-headers
+
 	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 	hwclock --systohc
+	systemctl enable --now systemd-timesyncd
 
 	sed -i 's/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen
 	sed -i 's/#ja_JP.UTF-8/ja_JP.UTF-8/g' /etc/locale.gen
@@ -198,7 +202,7 @@ set_timezone
 init_disk || error_exit "Disk format failed."
 mount_disk || error_exit "Disk mounting failed."
 
-pacstrap -K /mnt base linux linux-firmware
+pacstrap -K /mnt base linux linux-headers linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
 config_arch || error_exit "Arch configuration failed."

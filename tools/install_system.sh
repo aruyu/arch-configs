@@ -127,8 +127,12 @@ function config_arch()
   read -p "Enter a new user name: " -e USER_NAME
 
   arch-chroot /mnt <<-REALEND
+	pacman -Syu
+	pacman -S --needed --noconfirm linux-lts linux-lts-headers
+
 	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 	hwclock --systohc
+	systemctl enable --now systemd-timesyncd
 
 	sed -i 's/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen
 	sed -i 's/#ja_JP.UTF-8/ja_JP.UTF-8/g' /etc/locale.gen
@@ -141,11 +145,11 @@ function config_arch()
 	LC_COLLATE=C
 EOF
 
-	echo 'arch' >> /etc/hostname
+	echo '${USER_NAME}-arch' >> /etc/hostname
 	cat >> /etc/hosts <<-EOF
 	127.0.1.1  localhost
 	::1        localhost
-	127.0.1.1  arch
+	127.0.1.1  ${USER_NAME}-arch
 EOF
 
 	cat >> /etc/modprobe.d/nobeep.conf <<-EOF
@@ -250,7 +254,7 @@ set_timezone
 init_disk || error_exit "Disk format failed."
 mount_disk || error_exit "Disk mounting failed."
 
-pacstrap -K /mnt base linux linux-firmware
+pacstrap -K /mnt base linux linux-headers linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
 config_arch || error_exit "Arch configuration failed."
