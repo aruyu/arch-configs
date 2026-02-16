@@ -169,6 +169,8 @@ EOF
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
 	sed -i '/^GRUB_TIMEOUT=/s/5/3/g' /etc/default/grub
 	sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/s/"$/ usbcore.autosuspend=-1 btusb.enable_autosuspend=0"/' /etc/default/grub
+	sed -i 's/#KillUserProcesses=no/KillUserProcesses=yes/' /etc/systemd/logind.conf
+	sed -i 's/#KillExcludeUsers=root/KillExcludeUsers=root/' /etc/systemd/logind.conf
 	sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=suspend/' /etc/systemd/logind.conf
 	sed -i 's/#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/' /etc/default/grub
 	os-prober
