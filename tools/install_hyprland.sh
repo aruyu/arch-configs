@@ -105,33 +105,33 @@ function install_user_apps()
 
 function install_aur()
 {
-  AUR_DIR=$HOME/.cache/trizen/sources
+  AUR_DIR=$HOME/.cache/yay
 
-  git clone https://aur.archlinux.org/trizen.git ${AUR_DIR}/trizen
-  cd ${AUR_DIR}/trizen
+  git clone https://aur.archlinux.org/yay.git ${AUR_DIR}/yay
+  cd ${AUR_DIR}/yay
   makepkg -si --noconfirm
 
-  trizen -S --needed --noconfirm catppuccin-cursors-frappe
+  yay -S --needed --noconfirm catppuccin-cursors-frappe
   sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Frappe-Dark-Cursors
 
-  trizen -S --needed --noconfirm debtap
-  trizen -S --needed --noconfirm downgrade
-  trizen -S --needed --noconfirm gtkterm
+  yay -S --needed --noconfirm debtap
+  yay -S --needed --noconfirm downgrade
+  yay -S --needed --noconfirm gtkterm
 
-  trizen -S --needed --noconfirm nwg-launchers
-  trizen -S --needed --noconfirm nwg-look
+  yay -S --needed --noconfirm nwg-launchers
+  yay -S --needed --noconfirm nwg-look
 
-  trizen -S --needed --noconfirm rate-mirrors
-  trizen -S --needed --noconfirm ttf-symbola
-  trizen -S --needed --noconfirm tty-clock
+  yay -S --needed --noconfirm rate-mirrors
+  yay -S --needed --noconfirm ttf-symbola
+  yay -S --needed --noconfirm tty-clock
 
-  trizen -S --needed --noconfirm uno-calculator-bin
-  trizen -S --needed --noconfirm uxplay
-  trizen -S --needed --noconfirm visual-studio-code-bin
+  yay -S --needed --noconfirm uno-calculator-bin
+  yay -S --needed --noconfirm uxplay
+  yay -S --needed --noconfirm visual-studio-code-bin
 
-  trizen -S --needed --noconfirm waybar-hyprland-git
-  trizen -S --needed --noconfirm wayout-git
-  trizen -S --needed --noconfirm wdisplays
+  yay -S --needed --noconfirm waybar-hyprland-git
+  yay -S --needed --noconfirm wayout-git
+  yay -S --needed --noconfirm wdisplays
 
   #sudo pacman -S lib32-mesa-libgl
   #git clone https://aur.archlinux.org/playonlinux.git ${AUR_DIR}/playonlinux

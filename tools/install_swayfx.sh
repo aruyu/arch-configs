@@ -66,7 +66,7 @@ function install_dm()
 
 function install_wm()
 {
-  AUR_DIR=$HOME/.cache/trizen/sources
+  AUR_DIR=$HOME/.cache/yay
 
   git clone https://aur.archlinux.org/swayfx.git ${AUR_DIR}/swayfx
   cd ${AUR_DIR}/swayfx
@@ -112,36 +112,36 @@ function install_user_apps()
 
 function install_aur()
 {
-  AUR_DIR=$HOME/.cache/trizen/sources
+  AUR_DIR=$HOME/.cache/yay
 
-  git clone https://aur.archlinux.org/trizen.git ${AUR_DIR}/trizen
-  cd ${AUR_DIR}/trizen
+  git clone https://aur.archlinux.org/yay.git ${AUR_DIR}/yay
+  cd ${AUR_DIR}/yay
   makepkg -si --noconfirm
 
-  trizen -S --needed --noconfirm autotiling --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm avizo --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm catppuccin-cursors-frappe --sudo-autorepeat-at-runtime
+  yay -S --needed --noconfirm autotiling
+  yay -S --needed --noconfirm avizo
+  yay -S --needed --noconfirm catppuccin-cursors-frappe
   sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Frappe-Dark-Cursors
 
-  trizen -S --needed --noconfirm debtap --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm downgrade --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm gtkterm --sudo-autorepeat-at-runtime
+  yay -S --needed --noconfirm debtap
+  yay -S --needed --noconfirm downgrade
+  yay -S --needed --noconfirm gtkterm
 
-  trizen -S --needed --noconfirm nwg-launchers --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm nwg-look --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm pasystray-wayland --sudo-autorepeat-at-runtime
+  yay -S --needed --noconfirm nwg-launchers
+  yay -S --needed --noconfirm nwg-look
+  yay -S --needed --noconfirm pasystray-wayland
 
-  trizen -S --needed --noconfirm rate-mirrors --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm ttf-symbola --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm tty-clock --sudo-autorepeat-at-runtime
+  yay -S --needed --noconfirm rate-mirrors
+  yay -S --needed --noconfirm ttf-symbola
+  yay -S --needed --noconfirm tty-clock
 
-  trizen -S --needed --noconfirm uno-calculator-bin --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm uxplay --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm visual-studio-code-bin --sudo-autorepeat-at-runtime
+  yay -S --needed --noconfirm uno-calculator-bin
+  yay -S --needed --noconfirm uxplay
+  yay -S --needed --noconfirm visual-studio-code-bin
 
-  trizen -S --needed --noconfirm wayout-git --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm wdisplays --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm wvkbd --sudo-autorepeat-at-runtime
+  yay -S --needed --noconfirm wayout-git
+  yay -S --needed --noconfirm wdisplays
+  yay -S --needed --noconfirm wvkbd
 
   #sudo pacman -S lib32-mesa-libgl
   #git clone https://aur.archlinux.org/playonlinux.git ${AUR_DIR}/playonlinux

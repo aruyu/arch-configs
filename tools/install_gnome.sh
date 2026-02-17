@@ -91,20 +91,20 @@ function install_user_apps()
 
 function install_aur()
 {
-  AUR_DIR=$HOME/.cache/trizen/sources
+  AUR_DIR=$HOME/.cache/yay
 
-  git clone https://aur.archlinux.org/trizen.git ${AUR_DIR}/trizen
-  cd ${AUR_DIR}/trizen
+  git clone https://aur.archlinux.org/yay.git ${AUR_DIR}/yay
+  cd ${AUR_DIR}/yay
   makepkg -si --noconfirm
 
-  trizen -S --needed --noconfirm debtap --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm downgrade --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm grub-customizer --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm gtkterm --sudo-autorepeat-at-runtime
+  yay -S --needed --noconfirm debtap
+  yay -S --needed --noconfirm downgrade
+  yay -S --needed --noconfirm grub-customizer
+  yay -S --needed --noconfirm gtkterm
 
-  trizen -S --needed --noconfirm rate-mirrors --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm ttf-symbola --sudo-autorepeat-at-runtime
-  trizen -S --needed --noconfirm tty-clock --sudo-autorepeat-at-runtime
+  yay -S --needed --noconfirm rate-mirrors
+  yay -S --needed --noconfirm ttf-symbola
+  yay -S --needed --noconfirm tty-clock
 
   #sudo pacman -S lib32-mesa-libgl
   #git clone https://aur.archlinux.org/playonlinux.git ${AUR_DIR}/playonlinux
