@@ -79,6 +79,7 @@ function config_arch()
   read -p "Enter a new user name: " -e USER_NAME
 
   arch-chroot /mnt <<-REALEND
+##-------------------------------------------------------------##
 	curl -s https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \
 	| pacman-key --add -
 	pacman-key --finger 56C464BAAC421453
@@ -93,6 +94,7 @@ EOF
 	pacman -Syu
 	pacman -S --needed --noconfirm linux-surface linux-surface-headers iptsd #linux-surface-secureboot-mok
 
+##-------------------------------------------------------------##
 	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 	hwclock --systohc
 	systemctl enable --now systemd-timesyncd
@@ -120,6 +122,7 @@ EOF
 	blacklist snd_pcsp
 EOF
 
+##-------------------------------------------------------------##
 	pacman -S --needed --noconfirm zram-generator
 
 	cat >> /etc/systemd/zram-generator.conf <<-EOF
@@ -140,6 +143,7 @@ EOF
 	systemctl start systemd-zram-setup@zram0.service
 	sysctl --system
 
+##-------------------------------------------------------------##
 	pacman -S --needed --noconfirm networkmanager avahi
 	pacman -S --needed --noconfirm dhclient iwd
 
@@ -182,6 +186,7 @@ EOF
 	pacman -S --needed --noconfirm bluez bluez-utils
 	systemctl enable bluetooth.service
 
+##-------------------------------------------------------------##
 	curl -o /etc/systemd/system/rc-local.service \
 	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/rc-local.service
 	curl -o /etc/rc.local \
@@ -190,6 +195,7 @@ EOF
 	chmod a+x /etc/rc.local
 	systemctl enable rc-local.service
 
+##-------------------------------------------------------------##
 	pacman -S --needed --noconfirm grub efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
 	sed -i '/^GRUB_TIMEOUT=/s/5/0/g' /etc/default/grub
@@ -201,6 +207,7 @@ EOF
 	grub-mkconfig -o /boot/grub/grub.cfg
 	efibootmgr -c -d ${DISK_PATH} -p 1 -L "Arch Linux" -l "\EFI\BOOT\BOOTX64.EFI"
 
+##-------------------------------------------------------------##
 	passwd <<-EOF
 	root
 	root
@@ -212,6 +219,7 @@ EOF
 	${USER_NAME}
 EOF
 
+##-------------------------------------------------------------##
 	pacman -S --needed --noconfirm sudo vim nano
 	sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 	ln -s /usr/bin/vim /usr/bin/vi

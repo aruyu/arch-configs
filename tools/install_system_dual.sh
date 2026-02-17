@@ -72,9 +72,11 @@ function config_arch()
   read -p "Enter a new user name: " -e USER_NAME
 
   arch-chroot /mnt <<-REALEND
+##-------------------------------------------------------------##
 	pacman -Syu
 	pacman -S --needed --noconfirm linux-lts linux-lts-headers
 
+##-------------------------------------------------------------##
 	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 	hwclock --systohc
 	systemctl enable --now systemd-timesyncd
@@ -102,6 +104,7 @@ EOF
 	blacklist snd_pcsp
 EOF
 
+##-------------------------------------------------------------##
 	pacman -S --needed --noconfirm zram-generator
 
 	cat >> /etc/systemd/zram-generator.conf <<-EOF
@@ -122,6 +125,7 @@ EOF
 	systemctl start systemd-zram-setup@zram0.service
 	sysctl --system
 
+##-------------------------------------------------------------##
 	pacman -S --needed --noconfirm networkmanager avahi
 	pacman -S --needed --noconfirm dhclient iwd
 
@@ -164,6 +168,7 @@ EOF
 	pacman -S --needed --noconfirm bluez bluez-utils
 	systemctl enable bluetooth.service
 
+##-------------------------------------------------------------##
 	curl -o /etc/systemd/system/rc-local.service \
 	https://raw.githubusercontent.com/aruyu/arch-configs/master/configs/rc-local.service
 	curl -o /etc/rc.local \
@@ -172,6 +177,7 @@ EOF
 	chmod a+x /etc/rc.local
 	systemctl enable rc-local.service
 
+##-------------------------------------------------------------##
 	pacman -S --needed --noconfirm grub efibootmgr dosfstools os-prober mtools
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
 	sed -i '/^GRUB_TIMEOUT=/s/5/3/g' /etc/default/grub
@@ -183,6 +189,7 @@ EOF
 	os-prober
 	grub-mkconfig -o /boot/grub/grub.cfg
 
+##-------------------------------------------------------------##
 	passwd <<-EOF
 	root
 	root
@@ -194,6 +201,7 @@ EOF
 	${USER_NAME}
 EOF
 
+##-------------------------------------------------------------##
 	pacman -S --needed --noconfirm sudo vim nano
 	sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 	ln -s /usr/bin/vim /usr/bin/vi
