@@ -55,18 +55,15 @@ function init_disk()
   fdisk -l
   echo
   read -p "Enter the EFI Disk: " -i "/dev/" -e DISK_EFI_PATH
-  read -p "Enter the Swap Disk: " -i "/dev/" -e DISK_SWAP_PATH
   read -p "Enter the Filesystem Disk: " -i "/dev/" -e DISK_FS_PATH
 
   mkfs.ext4 ${DISK_FS_PATH}
-  mkswap ${DISK_SWAP_PATH}
 }
 
 function mount_disk()
 {
   mount ${DISK_FS_PATH} /mnt
   mount --mkdir ${DISK_EFI_PATH} /mnt/boot
-  swapon ${DISK_SWAP_PATH}
 }
 
 function config_arch()
@@ -115,6 +112,26 @@ EOF
 	blacklist pcspkr
 	blacklist snd_pcsp
 EOF
+
+	pacman -S --needed --noconfirm zram-generator
+
+	cat >> /etc/systemd/zram-generator.conf <<-EOF
+	[zram0]
+	zram-size=ram/2
+	compression-algorithm=lz4
+	swap-priority=32767
+EOF
+
+	cat >> /etc/sysctl.d/99-vm-zram.conf <<-EOF
+	vm.swappiness=180
+	vm.watermark_boost_factor=0
+	vm.watermark_scale_factor=125
+	vm.page-cluster=0
+EOF
+
+	systemctl daemon-reload
+	systemctl start systemd-zram-setup@zram0.service
+	sysctl --system
 
 	pacman -S --needed --noconfirm networkmanager avahi
 	pacman -S --needed --noconfirm dhclient iwd

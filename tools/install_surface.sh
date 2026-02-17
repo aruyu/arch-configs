@@ -54,71 +54,23 @@ function init_disk()
   echo
   fdisk -l
   echo
-  read -p "Enter the Disk. (at least 32GB): " -i "/dev/" -e DISK_PATH
+  read -p "Enter the Disk want to install system: " -i "/dev/" -e DISK_PATH
+  cfdisk ${DISK_PATH}
 
-  while true; do
-    echo
-    free -h
-    echo
-    read -p "Enter the Swap memory capacity. (Half of the RAM): " SELECTION
-    case ${SELECTION} in
-      [1-9][GM] )                 SWAP_MEM=${SELECTION}; break;;
-      [1-9][0-9][GM] )            SWAP_MEM=${SELECTION}; break;;
-      [1-9][0-9][0-9][GM] )       SWAP_MEM=${SELECTION}; break;;
-      [1-9][0-9][0-9][0-9][GM] )  SWAP_MEM=${SELECTION}; break;;
-      * )                         echo "Wrong answer. (*G or *M)";;
-    esac
-  done
-  script_print_notify "Swap memory capacity: ${SWAP_MEM}B.\n"
-  sleep 1
+  echo
+  fdisk -l
+  echo
+  read -p "Enter the EFI Disk: " -i "/dev/" -e DISK_EFI_PATH
+  read -p "Enter the Filesystem Disk: " -i "/dev/" -e DISK_FS_PATH
 
-  fdisk ${DISK_PATH} <<-EOF
-	g
-	p
-	n
-	1
-
-	+512M
-	n
-	2
-
-	+${SWAP_MEM}
-	n
-	3
-
-
-	t
-	1
-	1
-	t
-	2
-	19
-	p
-	w
-EOF
-
-  if [[ ${DISK_PATH} == *"/sd"* ]]; then
-    mkfs.ext4 ${DISK_PATH}3
-    mkfs.fat -F 32 ${DISK_PATH}1
-    mkswap ${DISK_PATH}2
-  else
-    mkfs.ext4 ${DISK_PATH}p3
-    mkfs.fat -F 32 ${DISK_PATH}p1
-    mkswap ${DISK_PATH}p2
-  fi
+  mkfs.ext4 ${DISK_FS_PATH}
+  mkfs.fat -F 32 ${DISK_EFI_PATH}
 }
 
 function mount_disk()
 {
-  if [[ ${DISK_PATH} == *"/sd"* ]]; then
-    mount ${DISK_PATH}3 /mnt
-    mount --mkdir ${DISK_PATH}1 /mnt/boot
-    swapon ${DISK_PATH}2
-  else
-    mount ${DISK_PATH}p3 /mnt
-    mount --mkdir ${DISK_PATH}p1 /mnt/boot
-    swapon ${DISK_PATH}p2
-  fi
+  mount ${DISK_FS_PATH} /mnt
+  mount --mkdir ${DISK_EFI_PATH} /mnt/boot
 }
 
 function config_arch()
@@ -167,6 +119,26 @@ EOF
 	blacklist pcspkr
 	blacklist snd_pcsp
 EOF
+
+	pacman -S --needed --noconfirm zram-generator
+
+	cat >> /etc/systemd/zram-generator.conf <<-EOF
+	[zram0]
+	zram-size=ram/2
+	compression-algorithm=lz4
+	swap-priority=32767
+EOF
+
+	cat >> /etc/sysctl.d/99-vm-zram.conf <<-EOF
+	vm.swappiness=180
+	vm.watermark_boost_factor=0
+	vm.watermark_scale_factor=125
+	vm.page-cluster=0
+EOF
+
+	systemctl daemon-reload
+	systemctl start systemd-zram-setup@zram0.service
+	sysctl --system
 
 	pacman -S --needed --noconfirm networkmanager avahi
 	pacman -S --needed --noconfirm dhclient iwd
