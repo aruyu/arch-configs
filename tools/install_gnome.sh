@@ -84,7 +84,7 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
   sudo pacman -S --needed --noconfirm htop fastfetch
 
-  sudo pacman -S --needed --noconfirm docker docker-compose minicom remmina freerdp
+  sudo pacman -S --needed --noconfirm docker docker-compose minicom putty freerdp
   sudo systemctl enable docker.service
   sudo usermod -aG docker,tty,uucp $USER
 }
@@ -100,7 +100,6 @@ function install_aur()
   yay -S --needed --noconfirm debtap
   yay -S --needed --noconfirm downgrade
   yay -S --needed --noconfirm grub-customizer
-  yay -S --needed --noconfirm gtkterm
 
   yay -S --needed --noconfirm rate-mirrors
   yay -S --needed --noconfirm ttf-symbola

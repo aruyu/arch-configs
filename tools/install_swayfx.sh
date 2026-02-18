@@ -105,7 +105,7 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp wl-clipboard
   sudo pacman -S --needed --noconfirm htop fastfetch gsimplecal wev evtest
 
-  sudo pacman -S --needed --noconfirm docker docker-compose minicom remmina freerdp
+  sudo pacman -S --needed --noconfirm docker docker-compose minicom putty remmina freerdp
   sudo systemctl enable docker.service
   sudo usermod -aG docker,tty,uucp $USER
 }
@@ -125,7 +125,6 @@ function install_aur()
 
   yay -S --needed --noconfirm debtap
   yay -S --needed --noconfirm downgrade
-  yay -S --needed --noconfirm gtkterm
 
   yay -S --needed --noconfirm nwg-launchers
   yay -S --needed --noconfirm nwg-look

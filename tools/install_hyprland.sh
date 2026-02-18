@@ -81,7 +81,7 @@ function install_system_apps()
   sudo pacman -S --needed --noconfirm network-manager-applet blueman pavucontrol
   sudo pacman -S --needed --noconfirm nautilus nautilus-share file-roller ntfs-3g
   sudo pacman -S --needed --noconfirm gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
-  sudo pacman -S --needed --noconfirm ibus ibus-libpinyin ibus-hangul
+  sudo pacman -S --needed --noconfirm ibus ibus-hangul ibus-anthy ibus-rime
   sudo su <<-REALEND
 	cat >> /etc/environment <<-EOF
 	GTK_IM_MODULE=ibus
@@ -98,7 +98,7 @@ function install_user_apps()
   sudo pacman -S --needed --noconfirm mpv mpc ncmpcpp viewnior copyq grim slurp
   sudo pacman -S --needed --noconfirm htop fastfetch gsimplecal wev evtest
 
-  sudo pacman -S --needed --noconfirm docker docker-compose minicom remmina freerdp
+  sudo pacman -S --needed --noconfirm docker docker-compose minicom putty remmina freerdp
   sudo systemctl enable docker.service
   sudo usermod -aG docker,tty,uucp $USER
 }
@@ -116,7 +116,6 @@ function install_aur()
 
   yay -S --needed --noconfirm debtap
   yay -S --needed --noconfirm downgrade
-  yay -S --needed --noconfirm gtkterm
 
   yay -S --needed --noconfirm nwg-launchers
   yay -S --needed --noconfirm nwg-look
