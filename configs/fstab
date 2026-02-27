@@ -1,0 +1,13 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/nvme0n1p4
+UUID=nc	/         	ext4      	rw,relatime,stripe=16	0 1
+
+# /dev/nvme0n1p1 LABEL=EFI
+UUID=nc      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# /dev/nvme0n1p2, /dev/nvme0n1p3
+/dev/disk/by-uuid/nc /mnt/c ntfs3 nosuid,nodev,nofail,ro,uid=0,gid=60000,fmask=002,dmask=002,umask=002,x-gvfs-show 0 0
+/dev/disk/by-uuid/nc /mnt/d ntfs3 nosuid,nodev,nofail,rw,uid=0,gid=60000,fmask=002,dmask=002,umask=002,x-gvfs-show 0 0
