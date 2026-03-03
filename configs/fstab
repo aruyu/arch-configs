@@ -9,5 +9,5 @@ UUID=nc	/         	ext4      	rw,relatime,stripe=16	0 1
 UUID=nc      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
 
 # /dev/nvme0n1p2, /dev/nvme0n1p3
-/dev/disk/by-uuid/nc /mnt/c ntfs3 nosuid,nodev,nofail,ro,uid=0,gid=60000,fmask=002,dmask=002,umask=002,x-gvfs-show 0 0
-/dev/disk/by-uuid/nc /mnt/d ntfs3 nosuid,nodev,nofail,rw,uid=0,gid=60000,fmask=002,dmask=002,umask=002,x-gvfs-show 0 0
+/dev/disk/by-uuid/nc /mnt/c ntfs3 nosuid,nodev,nofail,ro,uid=0,gid=60000,fmask=0133,dmask=0002,x-gvfs-show 0 0
+/dev/disk/by-uuid/nc /mnt/d ntfs3 nosuid,nodev,nofail,rw,uid=0,gid=60000,fmask=0111,dmask=0002,x-gvfs-show 0 0
