@@ -89,8 +89,9 @@ EOF
 
 ##-------------------------------------------------------------##
 	ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
-	hwclock --systohc
 	systemctl enable --now systemd-timesyncd
+	sleep 3
+	hwclock --systohc
 
 	sed -i 's/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen
 	sed -i 's/#ja_JP.UTF-8/ja_JP.UTF-8/g' /etc/locale.gen
