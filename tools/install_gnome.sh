@@ -67,6 +67,7 @@ function install_dm()
 
 function install_system_apps()
 {
+  sudo pacman -S --needed --noconfirm gnome-shell-extensions extension-manager gnome-tweaks dconf-editor
   sudo pacman -S --needed --noconfirm nautilus nautilus-share file-roller ntfs-3g
   sudo pacman -S --needed --noconfirm gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
   sudo pacman -S --needed --noconfirm ibus ibus-hangul ibus-anthy ibus-rime
@@ -81,7 +82,7 @@ REALEND
 
 function install_user_apps()
 {
-  sudo pacman -S --needed --noconfirm chromium firefox gnome-terminal gnome-tweaks dconf-editor
+  sudo pacman -S --needed --noconfirm chromium firefox gnome-terminal
   sudo pacman -S --needed --noconfirm libreoffice-still gimp inkscape rnote
   sudo pacman -S --needed --noconfirm htop fastfetch
 
