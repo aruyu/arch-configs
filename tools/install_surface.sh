@@ -76,7 +76,8 @@ function mount_disk()
 function config_arch()
 {
   echo
-  read -p "Enter a new user name: " -e USER_NAME
+  read -p "Enter a username: " -e USER_NAME
+  read -p "Enter a hostname: " -i "${USER_NAME}-arch" -e HOST_NAME
 
   arch-chroot /mnt <<-REALEND
 ##-------------------------------------------------------------##
@@ -111,11 +112,11 @@ EOF
 	LC_COLLATE=C
 EOF
 
-	echo '${USER_NAME}-arch' >> /etc/hostname
+	echo '${HOST_NAME}' >> /etc/hostname
 	cat >> /etc/hosts <<-EOF
 	127.0.1.1  localhost
 	::1        localhost
-	127.0.1.1  ${USER_NAME}-arch
+	127.0.1.1  ${HOST_NAME}
 EOF
 
 	cat >> /etc/modprobe.d/nobeep.conf <<-EOF
