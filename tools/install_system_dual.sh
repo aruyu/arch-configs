@@ -229,6 +229,7 @@ set_timezone
 init_disk || error_exit "Disk format failed."
 mount_disk || error_exit "Disk mounting failed."
 
+pacman -Sy
 pacstrap -K /mnt base linux linux-headers linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
