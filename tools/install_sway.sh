@@ -80,7 +80,7 @@ function install_others()
 function install_system_apps()
 {
   sudo pacman -S --needed --noconfirm network-manager-applet blueman pavucontrol
-  sudo pacman -S --needed --noconfirm nautilus nautilus-share file-roller ntfs-3g
+  sudo pacman -S --needed --noconfirm nautilus nautilus-share file-roller ntfs-3g exfatprogs
   sudo pacman -S --needed --noconfirm gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
   sudo pacman -S --needed --noconfirm fcitx5 fcitx5-qt fcitx5-gtk fcitx5-lua fcitx5-configtool fcitx5-material-color
   sudo pacman -S --needed --noconfirm fcitx5-hangul fcitx5-mozc fcitx5-rime rime-pinyin-zhwiki
