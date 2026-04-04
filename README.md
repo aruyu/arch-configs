@@ -50,7 +50,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/aruyu/arch-configs/master/
 
 > [!CAUTION]
 > There is a known issue where interface errors/buggy occur when using 'iio-sensor-proxy' with the Surface Pro series.
-> **The hanging on the *'Power tab'*** in *gnome-control-center (Settings)* can be fixed by using below commands.
+> 
+> **The hanging at the 'Power tab' in *gnome-control-center (Settings)*** can be resolved by downgrading the package to version 3.5.2 using the command below.
 
 ```bash
 sudo systemctl stop --now iio-sensor-proxy
