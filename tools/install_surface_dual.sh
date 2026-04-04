@@ -194,11 +194,15 @@ EOF
 	pacman -S --needed --noconfirm grub efibootmgr dosfstools os-prober mtools
 	grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB --removable
 	sed -i '/^GRUB_TIMEOUT=/s/5/3/g' /etc/default/grub
-	sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/s/"$/ usbcore.autosuspend=-1 btusb.enable_autosuspend=0"/' /etc/default/grub
+	sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/s/"$/ usbcore.autosuspend=-1 btusb.enable_autosuspend=0 i915.enable_psr=0 pci=hpiosize=0 reboot=pci"/' /etc/default/grub
 	sed -i 's/#KillUserProcesses=no/KillUserProcesses=yes/' /etc/systemd/logind.conf
 	sed -i 's/#KillExcludeUsers=root/KillExcludeUsers=root/' /etc/systemd/logind.conf
 	sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=suspend/' /etc/systemd/logind.conf
 	sed -i 's/#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/' /etc/default/grub
+	sed -i 's/#AllowSuspend=yes/AllowSuspend=yes/' /etc/systemd/sleep.conf
+	sed -i 's/#AllowHibernation=yes/AllowHibernation=no/' /etc/systemd/sleep.conf
+	sed -i 's/#AllowSuspendThenHibernate=yes/AllowSuspendThenHibernate=no/' /etc/systemd/sleep.conf
+	sed -i 's/#AllowHybridSleep=yes/AllowHybridSleep=no/' /etc/systemd/sleep.conf
 	os-prober
 	grub-mkconfig -o /boot/grub/grub.cfg
 
