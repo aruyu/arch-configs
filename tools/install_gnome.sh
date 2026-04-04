@@ -61,7 +61,8 @@ function install_essentials()
 function install_dm()
 {
   sudo pacman -S --needed --noconfirm gnome gdm
-  sudo pacman -S --needed --noconfirm xdg-desktop-portal-gnome xorg-xhost
+  sudo pacman -S --needed --noconfirm xdg-desktop-portal-gnome
+  sudo pacman -S --needed --noconfirm xorg-xhost xorg-xauth
   sudo systemctl enable gdm.service
 }
 

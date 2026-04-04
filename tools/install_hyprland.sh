@@ -62,6 +62,7 @@ function install_dm()
 {
   sudo pacman -S --needed --noconfirm wayland wayland-utils libdrm gdm
   sudo pacman -S --needed --noconfirm xdg-desktop-portal-hyprland xdg-desktop-portal-gnome
+  sudo pacman -S --needed --noconfirm xorg-xhost xorg-xauth
   sudo systemctl enable gdm.service
 }
 
