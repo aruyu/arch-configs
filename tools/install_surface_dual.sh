@@ -118,20 +118,27 @@ EOF
 EOF
 
 ##-------------------------------------------------------------##
+	pacman -S --needed --noconfirm tlp tlp-rdw tlp-pd
+
+	systemctl enable tlp.service
+	systemctl enable tlp-pd.service
+
+##-------------------------------------------------------------##
 	pacman -S --needed --noconfirm zram-generator
 
 	cat >> /etc/systemd/zram-generator.conf <<-EOF
 	[zram0]
-	zram-size=ram/2
-	compression-algorithm=lz4
-	swap-priority=32767
+	zram-size = ram/2
+	#max-zram-size =
+	compression-algorithm = lz4
+	swap-priority = 32767
 EOF
 
 	cat >> /etc/sysctl.d/99-vm-zram.conf <<-EOF
-	vm.swappiness=180
-	vm.watermark_boost_factor=0
-	vm.watermark_scale_factor=125
-	vm.page-cluster=0
+	vm.swappiness = 180
+	vm.watermark_boost_factor = 0
+	vm.watermark_scale_factor = 125
+	vm.page-cluster = 0
 EOF
 
 	systemctl daemon-reload
