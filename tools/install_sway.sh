@@ -146,11 +146,7 @@ function install_aur()
 
 function install_fonts()
 {
-  mkdir -p $HOME/.local/share/fonts/
-  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
-  unzip JetBrainsMono.zip -d $HOME/.local/share/fonts/
-  rm JetBrainsMono.zip
-
+  sudo pacman -S --needed --noconfirm ttf-jetbrains-mono-nerd
   sudo pacman -S --needed --noconfirm noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
   sudo pacman -S --needed --noconfirm noto-fonts font-manager
   sudo pacman -S --needed --noconfirm papirus-icon-theme
