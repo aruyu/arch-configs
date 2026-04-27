@@ -5,15 +5,22 @@
 #==
 #   firewall (inbound deny, outbound allow)
 #/
+# 허용 ip
 sudo iptables -A INPUT -s 192.168.0.0/16 -j ACCEPT
 sudo iptables -A INPUT -s 10.79.3.0/24 -j ACCEPT
 sudo iptables -A INPUT -s 10.79.4.0/24 -j ACCEPT
-#sudo iptables -A INPUT -p icmp -j ACCEPT
+
+# localhost, icmp(ping), docker0
 sudo iptables -A INPUT -i lo -j ACCEPT
-#sudo iptables -A INPUT -i docker0 -j ACCEPT
+#sudo iptables -A INPUT -p icmp -j ACCEPT
+sudo iptables -A INPUT -i docker0 -j ACCEPT
+
+# 새로운 연결 기존 연결 모두 허용
 sudo iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+# inbound deny (reject or drop)
 sudo iptables -A INPUT -j REJECT #--reject-with icmp-host-prohibited
 
+# POLICY
 sudo iptables -P INPUT DROP
 sudo iptables -P FORWARD DROP
 sudo iptables -P OUTPUT ACCEPT
@@ -22,11 +29,17 @@ sudo iptables -P OUTPUT ACCEPT
 #==
 #   firewall (inbound policy, outbound allow)
 #/
+# port 22, SSH 차단
 sudo iptables -A INPUT -p tcp --dport 22 -j DROP
-sudo iptables -A INPUT -p tcp --dport 22 -j REJECT --reject-with tcp-reset
+#sudo iptables -A INPUT -p tcp --dport 22 -j REJECT --reject-with tcp-reset
+sudo iptables -A INPUT -p tcp --dport 22 -j LOG --log-level info
+sudo iptables -A INPUT -p tcp --dport 22 -j LOG --log-prefix "[SSH Conn]"
+
+# port 3389, RDP 차단
 sudo iptables -A INPUT -p tcp --dport 3389 -j DROP
-sudo iptables -A INPUT -p tcp --dport 3389 -j REJECT --reject-with tcp-reset
-sudo iptables -A INPUT -s 10.0.0.0/8 -j DROP
+#sudo iptables -A INPUT -p tcp --dport 3389 -j REJECT --reject-with tcp-reset
+sudo iptables -A INPUT -p tcp --dport 3389 -j LOG --log-level info
+sudo iptables -A INPUT -p tcp --dport 3389 -j LOG --log-prefix "[RDP Conn]"
 
 # 새로운 연결 기존 연결 모두 허용
 sudo iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
@@ -35,6 +48,7 @@ sudo iptables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP
 # syn-flood attack 차단 (반복적으로 공격해 오는 접근)
 sudo iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP
 
+# POLICY
 sudo iptables -P INPUT ACCEPT
 sudo iptables -P FORWARD DROP
 sudo iptables -P OUTPUT ACCEPT
