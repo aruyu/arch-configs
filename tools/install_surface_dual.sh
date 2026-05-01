@@ -107,9 +107,7 @@ EOF
 
 	echo '${HOST_NAME}' >> /etc/hostname
 	cat >> /etc/hosts <<-EOF
-	127.0.1.1  localhost
-	::1        localhost
-	127.0.1.1  ${HOST_NAME}
+	127.0.1.1        ${HOST_NAME}
 EOF
 
 	cat >> /etc/modprobe.d/nobeep.conf <<-EOF
