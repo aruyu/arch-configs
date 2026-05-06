@@ -49,8 +49,8 @@ function install_essentials()
   sudo pacman -Syu
   sudo pacman -S --needed --noconfirm pacman-contrib base-devel bc gdb
   sudo pacman -S --needed --noconfirm git wget net-tools inetutils usbutils
-  sudo pacman -S --needed --noconfirm zip unzip unrar cpio rsync netcat
-  sudo pacman -S --needed --noconfirm tcpdump iptables openssh openvpn networkmanager-openvpn samba
+  sudo pacman -S --needed --noconfirm zip unzip unrar cpio rsync dos2unix
+  sudo pacman -S --needed --noconfirm netcat tcpdump iptables openssh samba
   sudo systemctl enable iptables.service
 
   sudo pacman -S --needed --noconfirm python python-pip python-setuptools
@@ -148,6 +148,13 @@ function install_fonts()
   sudo pacman -S --needed --noconfirm papirus-icon-theme
 }
 
+function install_vpntools()
+{
+  sudo pacman -S --needed --noconfirm openvpn networkmanager-openvpn
+  sudo pacman -S --needed --noconfirm wireguard-tools
+  yay -S --needed --noconfirm wireguird
+}
+
 
 
 
@@ -188,8 +195,9 @@ install_aur || error_exit "AUR installation failed."
 
 
 ##======================
-#-- Fonts & Icons
+#-- Others
 install_fonts || error_exit "Fonts and icons installation failed."
+install_vpntools || error_exit "VPN tools installation failed."
 
 
 ##======================
